@@ -1,5 +1,5 @@
 #include "Physics.h"
 
 float Physics::g() {
-	return 9.81;
+	return 9.807;
 }
