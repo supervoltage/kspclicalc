@@ -1,5 +1,5 @@
 CC=g++
-SOURCES=main.cpp Physics.cpp DeltaVCalc.cpp TWRCalc.cpp ISPCalc.cpp
+SOURCES=main.cpp Physics.cpp DeltaVCalc.cpp TWRCalc.cpp ISPCalc.cpp TrueDVCalc.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=kspclicalc
 BINDIR="/usr/bin"
