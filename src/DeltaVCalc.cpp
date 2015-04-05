@@ -14,3 +14,7 @@ float DeltaVCalculator::Calculate(int argc, char **argv) {
 	
 	return log(totalMass / (totalMass - fuelMass)) * isp * g();
 }
+
+float DeltaVCalculator::CalculateInternal(float isp, float totalMass, float fuelMass) {
+	return log(totalMass / (totalMass - fuelMass)) * isp * g();
+}

@@ -9,6 +9,7 @@ class DeltaVCalculator : public Physics {
 public:
 				DeltaVCalculator();
 	float		Calculate(int argc, char **argv);
+	float		CalculateInternal(float isp, float totalMass, float fuelMass);
 };
 
 #endif
