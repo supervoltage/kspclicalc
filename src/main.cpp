@@ -4,6 +4,7 @@
 #include "DeltaVCalc.h"
 #include "TWRCalc.h"
 #include "ISPCalc.h"
+#include "TrueDVCalc.h"
 
 void printHelp(char **argv);
 
@@ -32,6 +33,12 @@ int main(int argc, char **argv) {
 		printf("%f\n", result);
 		return 0;
 	}
+	if (command == "-tdv" && argc >= 6) {
+		TrueDeltaVCalculator tdvCalc;
+		float result = tdvCalc.Calculate (argc, argv);
+		printf("%f\n", result);
+		return 0;
+	}
 	if (command == "-h" || command == "--help") {
 		printHelp(argv);
 		return 0;
@@ -44,12 +51,14 @@ int main(int argc, char **argv) {
 void printHelp(char **argv) {
 	printf("Usage: %s [OPTION]... [PARAMETERS]...\n", argv[0]);
 	printf("Calculator tool for Kerbal Space Program.\n");
-	printf("Calculates DeltaV, thrust-to-weight ratio, and specific impulse.\n\n");
+	printf("Calculates DeltaV, thrust-to-weight ratio, and specific impulse.\n");
 	printf("  -dv\t\t\tcalculate DeltaV\n");
 	printf("  -twr\t\t\tcalculate thrust-to-weight ratio\n");
-	printf("  -isp\t\t\tcalculate specific impulse\n\n");
+	printf("  -isp\t\t\tcalculate specific impulse\n");
+	printf("  -tdv\t\t\tcalculate true DeltaV\n\n");
 	printf("Syntaxes: \n");
 	printf("  -dv  [isp] [total mass] [fuel mass 1] [fuel mass 2] [fuel mass 3]...\n");
 	printf("  -twr [total mass] [thrust 1] [thrust 2] [thrust 3]...\n");
 	printf("  -isp [thrust 1] [isp 1] [thrust 2] [isp 2]...\n");
+	printf("  -tdv [atmIsp] [vacIsp] [escapeDv] [total mass] [fuel mass 1] [fuel mass 2]...\n");
 }
