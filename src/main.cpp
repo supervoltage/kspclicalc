@@ -5,6 +5,7 @@
 #include "TWRCalc.h"
 #include "ISPCalc.h"
 #include "TrueDVCalc.h"
+#include "FuelMassCalc.h"
 
 void printHelp(char **argv, bool details);
 
@@ -82,6 +83,19 @@ int main(int argc, char **argv) {
 			return 0;
 		}
 	}
+	if (command == "-fm" || command =="--fuel-mass") {
+		if (argc == 8) {
+			FuelMassCalculator fmCalc;
+			float result = fmCalc.Calculate (argc, argv);
+			printf("%f\n", result);
+			return 0;
+		}
+		else {
+			printf("Error: invalid syntax\n");
+			printf("Fuel mass syntax: -fm [Δv] [isp] [numEngines] [massEngine] [massPayload] [fullEmptyRatio]\n");
+			return 0;
+		}
+	}
 	if (command == "-h" || command == "--help") {
 		printHelp(argv, true);
 		return 0;
@@ -99,6 +113,7 @@ void printHelp(char **argv, bool details) {
 	printf("  -isp, --specific-impulse\t\tcalculate specific impulse\n");
 	printf("  -tdv, --true-deltav\t\t\tcalculate true DeltaV\n");
 	printf("  -cpu, --convert-propellant-units\tconvert fuel units to tons\n");
+	printf("  -fm,  --fuel-mass\t\t\tcalculate fuel mass needed to meet Δv\n");
 	if (details == false) {
 		printf("\nMore information available if \'-h\' or \'--help\' are specified.\n");
 	}
@@ -108,10 +123,16 @@ void printHelp(char **argv, bool details) {
 		printf("  -twr [total mass] [thrust 1] [thrust 2] [thrust 3]...\n");
 		printf("  -isp [thrust 1] [isp 1] [thrust 2] [isp 2]...\n");
 		printf("  -tdv [atmIsp] [vacIsp] [escapeDv] [total mass] [fuel mass 1] [fuel mass 2]...\n");
-		printf("  -cpu [fuel units 1] [fuel units 2] [fuel units 3]...\n\n");
+		printf("  -cpu [fuel units 1] [fuel units 2] [fuel units 3]...\n");
+		printf("  -fm  [Δv] [isp] [numEngines] [massEngine] [massPayload] [fullEmptyRatio]\n\n");
 		printf("In this calculator, the term \"fuel\" relates to both liquid fuel and oxidizer.\n");
 		printf("Specifying multiple fuel masses to \'-cpu\' will cause it to convert each fuel mass\n");
 		printf("and then add all of them up.\n");
-		printf("Specifying a single option will cause an error, and show the correct usage of the\noption.\n");
+		printf("Specifying a single option will cause an error, and show the correct usage of the\noption.\n\n");
+		printf("The units of measurement in this calculator are:\n");
+		printf("  -for weight: tons              [t]\n");
+		printf("  -for thrust: kiloNewtons       [kN]\n");
+		printf("  -for isp:    seconds           [s]\n");
+		printf("  -for Δv:     meters per second [m/s]\n");
 	}
 }
