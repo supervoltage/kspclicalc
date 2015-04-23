@@ -7,7 +7,10 @@
 #include "TrueDVCalc.h"
 #include "FuelMassCalc.h"
 
+const std::string version = "1.5";
+
 void printHelp(char **argv, bool details);
+void printAbout(char** argv, std::string version);
 
 int main(int argc, char **argv) {
 	if (argc == 1) {
@@ -128,6 +131,10 @@ int main(int argc, char **argv) {
 		printHelp(argv, true);
 		return 0;
 	}
+	if (command == "-a" || command == "--about") {
+		printAbout(argv, version);
+		return 0;
+	}
 	
 	printf("Error: invalid option specified\n");
 	return 0;
@@ -145,6 +152,7 @@ void printHelp(char **argv, bool details) {
 	printf("  -ts,  --time-split\t\t\tdivide the given time by 2\n");
 	if (details == false) {
 		printf("\nMore information available if \'-h\' or \'--help\' are specified.\n");
+		printf("Information about the author available if \'-a\' or \'--about\' are specified.\n");
 	}
 	if (details == true) {
 		printf("\nSyntaxes: \n");
@@ -166,4 +174,12 @@ void printHelp(char **argv, bool details) {
 		printf("  -for Δv:     meters per second [m/s]\n");
 		printf("  -for time:   minutes, seconds  [min], [s]\n");
 	}
+}
+
+void printAbout(char** argv, std::string version) {
+	printf("%s was written by Andrew \"supervoltage\" Kiss.\n", argv[0]);
+	printf("Current version is: %s\n", version.c_str());
+	printf("Bugs and suggestions can be sent to <ubervoltage@gmail.com>.\n");
+	printf("This program can be downloaded and compiled from the Arch User Repository or GitHub.\n");
+	printf("This program uses formulas which work only with the physics within Kerbal Space Program.\n");
 }
