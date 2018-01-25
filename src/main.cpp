@@ -10,7 +10,6 @@
 #include "TrueDV.hpp"
 #include "FuelMass.hpp"
 
-// TODO: debug FuelMass class - calculation giving wrong value
 // TODO: provide ways of executing input checking, throw runtime errors if something's invalid
 // TODO: turn all classes into functors. take the input args via the () operator and calculate immediately.
 // TODO: make it easy to use from CLI

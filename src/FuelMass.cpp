@@ -5,7 +5,10 @@
 double FuelMass::calculate()
 {
     double reqWetToDry = exp(deltaV / (phys::g * isp));
-    return ((reqWetToDry - 1)*((nEngines*massEngine) + massPayload)*fullEmptyRatio) / (fullEmptyRatio - reqWetToDry);
+    double mass = (reqWetToDry - 1)*((nEngines*massEngine) + massPayload)*fullEmptyRatio;
+    double ratio = fullEmptyRatio - reqWetToDry;
+    m_result = mass / ratio;
+    return m_result;
 }
 
 void FuelMass::clearall()
