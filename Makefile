@@ -1,6 +1,6 @@
-CC=g++
-CFLAGS=-c -Wall --std=c++17 -g
-LDFLAGS= -g
+CXX=g++
+CXXFLAGS=-g -Wall --std=c++17
+LDFLAGS=-g
 SOURCES := $(shell find src/ -type f -name '*.cpp')
 OBJECTS := $(SOURCES:.cpp=.o)
 SDIR=src
@@ -10,10 +10,13 @@ DEPS := $(SOURCES:.cpp=.h)
 all: $(SOURCES) $(EXECUTABLE)
     
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
-%.o: $(SDIR)/%.cpp $(DEPS)
-	$(CC) $(CFLAGS) -o $@ $<
+%.cpp%.o: $(SOURCES) $(DEPS)
+	$(CXX) $(CXXFLAGS) -o $@ $<
 
 clean:
 	rm $(OBJECTS)
+
+cleanest:
+	rm $(OBJECTS) $(EXECUTABLE)
