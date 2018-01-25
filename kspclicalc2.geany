@@ -18,8 +18,8 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=kspclicalc2
-base_path=/home/supervoltage/projects/kspclicalc2/
+name=kspclicalc
+base_path=/home/supervoltage/projects/kspclicalc/
 description=
 file_patterns=
 
@@ -28,26 +28,25 @@ long_line_behaviour=1
 long_line_column=80
 
 [files]
-current_page=0
-FILE_NAME_0=862;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2Fmain.cpp;0;4
-FILE_NAME_1=52;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2Fphys.hpp;0;4
-FILE_NAME_2=505;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FDeltaV.hpp;0;4
-FILE_NAME_3=579;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FDeltaV.cpp;0;4
-FILE_NAME_4=143;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FCalculator.hpp;0;4
-FILE_NAME_5=73;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FCalculator.cpp;0;4
-FILE_NAME_6=461;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTWR.cpp;0;4
-FILE_NAME_7=431;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTWR.hpp;0;4
-FILE_NAME_8=1235;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTimeSplit.cpp;0;4
-FILE_NAME_9=479;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTimeSplit.hpp;0;4
-FILE_NAME_10=224;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FISP.hpp;0;4
-FILE_NAME_11=660;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FISP.cpp;0;4
-FILE_NAME_12=627;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTrueDV.hpp;0;4
-FILE_NAME_13=1509;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FTrueDV.cpp;0;4
-FILE_NAME_14=267;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FFuelMass.cpp;0;4
-FILE_NAME_15=66;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc2%2Fsrc%2FFuelMass.hpp;0;4
+current_page=13
+FILE_NAME_0=26;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FCalculator.cpp;0;4
+FILE_NAME_1=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FCalculator.hpp;0;4
+FILE_NAME_2=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FDeltaV.cpp;0;4
+FILE_NAME_3=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FDeltaV.hpp;0;4
+FILE_NAME_4=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FFuelMass.cpp;0;4
+FILE_NAME_5=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FFuelMass.hpp;0;4
+FILE_NAME_6=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FISP.cpp;0;4
+FILE_NAME_7=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FISP.hpp;0;4
+FILE_NAME_8=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FTWR.cpp;0;4
+FILE_NAME_9=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FTimeSplit.cpp;0;4
+FILE_NAME_10=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FTimeSplit.hpp;0;4
+FILE_NAME_11=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FTrueDV.cpp;0;4
+FILE_NAME_12=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2FTrueDV.hpp;0;4
+FILE_NAME_13=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2Fmain.cpp;0;4
+FILE_NAME_14=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fsupervoltage%2Fprojects%2Fkspclicalc%2Fsrc%2Fphys.hpp;0;4
 
 [VTE]
-last_dir=/home/supervoltage/projects/kspclicalc2/src
+last_dir=/home/supervoltage/projects/kspclicalc/src
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
