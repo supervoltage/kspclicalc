@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -Wall --std=c++17
+CFLAGS=-c -Wall --std=c++17 -g
 LDFLAGS=
 SOURCES := $(shell find src/ -type f -name '*.cpp')
 OBJECTS := $(SOURCES:.cpp=.o)
