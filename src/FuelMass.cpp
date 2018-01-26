@@ -36,12 +36,12 @@ void FuelMass::setargs(double new_deltaV, double new_isp, int new_nEngines,
                        double new_massEngine, double new_massPayload,
                        double new_fullEmptyRatio)
 {
-    deltaV = new_deltaV;
-    isp = new_isp;
-    nEngines = new_nEngines;
-    massEngine = new_massEngine;
-    massPayload = new_massPayload;
-    fullEmptyRatio = new_fullEmptyRatio;
+    set_deltaV          (new_deltaV);
+    set_isp             (new_isp);
+    set_nEngines        (new_nEngines);
+    set_massEngine      (new_massEngine);
+    set_massPayload     (new_massPayload);
+    set_fullEmptyRatio  (new_fullEmptyRatio);
 }
 
 void FuelMass::set_deltaV(double new_deltaV)
