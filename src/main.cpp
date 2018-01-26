@@ -11,6 +11,12 @@
 #include "FuelMass.hpp"
 
 // TODO: provide ways of executing input checking, throw runtime errors if something's invalid
+    // DeltaV       done
+    // FuelMass     pending
+    // ISP          pending
+    // TWR          pending
+    // TimeSplit    pending
+    // TrueDV       pending
 // TODO: turn all classes into functors. take the input args via the () operator and calculate immediately.
 // TODO: make it easy to use from CLI
 // TODO: make a branch for Android development, create an app as well
