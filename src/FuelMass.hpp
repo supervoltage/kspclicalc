@@ -13,6 +13,10 @@ private:
     double massPayload;
     double fullEmptyRatio;
 public:
+    FuelMass();
+    FuelMass(double new_deltaV, double new_isp, int new_nEngines,
+             double new_massEngine, double new_massPayload,
+             double new_fullEmptyRatio);
     virtual double calculate();
     virtual void clearall();
     virtual void clearresult();
