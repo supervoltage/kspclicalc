@@ -61,15 +61,36 @@ const std::vector<engine>& ISP::get_engines()
 
 void ISP::set_engines(std::vector<engine> new_engines)
 {
+    if (new_engines.size() == 0)
+        throw std::length_error("input engine list has no elements");
+    
+    for (auto& it : new_engines)
+    {
+        if (it.first <= 0)
+            throw std::domain_error("isp cannot be less than or equal to 0");
+        if (it.second <= 0)
+            throw std::domain_error("thrust cannot be less than or equal to 0");
+    }
+    
     engines = new_engines;
 }
 
 void ISP::insert_engine(engine new_engine)
 {
+    if (new_engine.first <= 0)
+        throw std::domain_error("isp cannot be less than or equal to 0");
+    if (new_engine.second <= 0)
+        throw std::domain_error("thrust cannot be less than or equal to 0");
+    
     engines.push_back(new_engine);
 }
 
 void ISP::insert_engine(double isp, double thrust)
 {
+    if (isp <= 0)
+        throw std::domain_error("isp cannot be less than or equal to 0");
+    if (thrust <= 0)
+        throw std::domain_error("thrust cannot be less than or equal to 0");
+    
     engines.push_back(engine(isp, thrust));
 }
