@@ -23,13 +23,11 @@
 
 int main()
 {
-    FuelMass fm;
+    DeltaV dv;
     
-    fm.setargs(1300, 320, 1, 1.5, 7.45, 9);
-    fm.calculate();
+    dv.setargs(2, 345, 4);
     
-    std::cout << fm.getResult() << "\n";
-    std::cout << exp(1300 / (320*9.807)) << "\n";
+    std::cout << dv.calculate() << "\n";
     
     return 0;
 }
