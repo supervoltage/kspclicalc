@@ -10,9 +10,6 @@ DeltaV::DeltaV()
 
 DeltaV::DeltaV(double new_fuelMass, double new_isp, double new_totalMass)
 {
-    if (new_fuelMass <= 0 || new_totalMass <= 0)
-        throw std::domain_error("mass cannot be less than or equal to 0");
-    
     setargs(new_fuelMass, new_isp, new_totalMass);
 }
 
@@ -33,25 +30,36 @@ double DeltaV::get_totalMass()
 
 void DeltaV::set_fuelMass(double newFuelMass)
 {
+    if (newFuelMass <= 0)
+        throw std::domain_error("fuel mass cannot be less than or equal to 0");
+    
     fuelMass = newFuelMass;
 }
 
 void DeltaV::set_fuelMass(std::vector<double> vec)
 {
-    fuelMass = 0;
+    double tmpfuelMass = 0;
     for(auto& it : vec)
     {
-        fuelMass += it;
+        tmpfuelMass += it;
     }
+    if (tmpfuelMass <= 0)
+        throw std::domain_error("fuel mass cannot be less than or equal to 0");
+    
+    fuelMass = tmpfuelMass;
 }
 
 void DeltaV::set_isp(double newIsp)
 {
+    if (newIsp <= 0)
+        throw std::domain_error("isp cannot be less than or equal to 0");
     isp = newIsp;
 }
 
 void DeltaV::set_totalMass(double newTotalMass)
 {
+    if (newTotalMass <= 0)
+        throw std::domain_error("total mass cannot be less than or equal to 0");
     totalMass = newTotalMass;
 }
 
