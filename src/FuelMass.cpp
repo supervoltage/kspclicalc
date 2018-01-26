@@ -46,31 +46,43 @@ void FuelMass::setargs(double new_deltaV, double new_isp, int new_nEngines,
 
 void FuelMass::set_deltaV(double new_deltaV)
 {
+    if (new_deltaV <= 0)
+        throw std::domain_error("deltaV cannot be less than or equal to 0");
     deltaV = new_deltaV;
 }
 
 void FuelMass::set_isp(double new_isp)
 {
+    if (new_isp <= 0)
+        throw std::domain_error("isp cannot be less than or equal to 0");
     isp = new_isp;
 }
 
 void FuelMass::set_nEngines(int new_nEngines)
 {
+    if (new_nEngines <= 0)
+        throw std::domain_error("nEngines cannot be less than or equal to 0");
     nEngines = new_nEngines;
 }
 
 void FuelMass::set_massEngine(double new_massEngine)
 {
+    if (new_massEngine <= 0)
+        throw std::domain_error("massEngine cannot be less than or equal to 0");
     massEngine = new_massEngine;
 }
 
 void FuelMass::set_massPayload(double new_massPayload)
 {
+    if (new_massPayload <= 0)
+        throw std::domain_error("massPayload cannot be less than or equal to 0");
     massPayload = new_massPayload;
 }
 
 void FuelMass::set_fullEmptyRatio(double new_fullEmptyRatio)
 {
+    if (new_fullEmptyRatio <= 0)
+        throw std::domain_error("fullEmptyRatio cannot be less than or equal to 0");
     fullEmptyRatio = new_fullEmptyRatio;
 }
 
