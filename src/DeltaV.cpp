@@ -3,9 +3,7 @@
 
 DeltaV::DeltaV()
 {
-    fuelMass = 0;
-    isp = 0;
-    totalMass = 0;
+    clearall();
 }
 
 DeltaV::DeltaV(double new_fuelMass, double new_isp, double new_totalMass)
