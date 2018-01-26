@@ -12,6 +12,8 @@ private:
     double  isp;
     double  totalMass;
 public:
+    DeltaV();
+    DeltaV(double new_fuelMass, double new_isp, double new_totalMass);
     double get_fuelMass();
     double get_isp();
     double get_totalMass();

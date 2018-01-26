@@ -1,6 +1,21 @@
 #include "DeltaV.hpp"
 #include "phys.hpp"
 
+DeltaV::DeltaV()
+{
+    fuelMass = 0;
+    isp = 0;
+    totalMass = 0;
+}
+
+DeltaV::DeltaV(double new_fuelMass, double new_isp, double new_totalMass)
+{
+    if (new_fuelMass <= 0 || new_totalMass <= 0)
+        throw std::domain_error("mass cannot be less than or equal to 0");
+    
+    setargs(new_fuelMass, new_isp, new_totalMass);
+}
+
 double DeltaV::get_fuelMass()
 {
     return fuelMass;
