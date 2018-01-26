@@ -1,5 +1,25 @@
 #include "ISP.hpp"
 
+ISP::ISP()
+{
+    clearall();
+}
+
+ISP::ISP(std::vector<engine> vec)
+{
+    set_engines(vec);
+}
+
+ISP::ISP(engine eng)
+{
+    insert_engine(eng);
+}
+
+ISP::ISP(double isp, double thrust)
+{
+    insert_engine(isp, thrust);
+}
+
 double ISP::calculate()
 {
     if (engines.size() == 0)

@@ -14,6 +14,11 @@ class ISP : public Calculator
 private:
     std::vector<engine> engines;
 public:
+    ISP();
+    ISP(std::vector<engine>);
+    ISP(engine);
+    ISP(double, double);
+    
     virtual double calculate();
     virtual void clearall();
     virtual void clearresult();
