@@ -10,9 +10,9 @@
 #include "TrueDV.hpp"
 #include "FuelMass.hpp"
 
-// TODO: provide ways of executing input checking, throw runtime errors if something's invalid
+// TODO: provide ways of executing input checking, throw runtime errors if something's invalid and make constructors
     // DeltaV       done
-    // FuelMass     pending
+    // FuelMass     done
     // ISP          pending
     // TWR          pending
     // TimeSplit    pending
