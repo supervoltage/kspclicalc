@@ -10,13 +10,6 @@
 #include "TrueDV.hpp"
 #include "FuelMass.hpp"
 
-// TODO: provide ways of executing input checking, throw runtime errors if something's invalid and create constructors
-    // DeltaV       done
-    // FuelMass     done
-    // ISP          done
-    // TWR          done
-    // TimeSplit    done
-    // TrueDV       done
 // TODO: turn all classes into functors. take the input args via the () operator and calculate immediately.
 // TODO: make it easy to use from CLI
 // TODO: make a branch for Android development, create an app as well
