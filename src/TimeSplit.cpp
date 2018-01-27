@@ -80,11 +80,16 @@ void TimeSplit::getResult(int& minutes, double& seconds)
 
 void TimeSplit::set_inputTime(std::pair<int, double> new_input_time)
 {
+    if (new_input_time.first < 0)
+        throw std::domain_error("new input time value \"minutes\" cannot be lower than 0 minutes");
+    if (new_input_time.second < 0 || new_input_time.second >= 60)
+        throw std::domain_error("new input time value \"seconds\" cannot be lower than 0 seconds or higher than or equal to 60 seconds");
+    
     input_time = new_input_time;
 }
 
 void TimeSplit::set_inputTime(int min, double sec)
 {
     std::pair<int, double> new_input_time(min, sec);
-    input_time = new_input_time;
+    set_inputTime(new_input_time);
 }
