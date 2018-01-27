@@ -15,8 +15,8 @@
     // FuelMass     done
     // ISP          done
     // TWR          done
-    // TimeSplit    pending
-    // TrueDV       pending
+    // TimeSplit    done
+    // TrueDV       done
 // TODO: turn all classes into functors. take the input args via the () operator and calculate immediately.
 // TODO: make it easy to use from CLI
 // TODO: make a branch for Android development, create an app as well

@@ -14,13 +14,17 @@ private:
     double totalMass;
     double fuelMass;
 public:
+    TrueDV();
+    TrueDV(double new_atmISP, double new_vacISP, double new_escapeDV, 
+           double new_totalMass, double new_fuelMass);
+           
     virtual double calculate();
     virtual void clearall();
     virtual void clearresult();
     virtual void clearargs();
     
-               // atmISP vacISP escapeDV totalMass fuelMass
-    void setargs(double, double, double, double, double);
+    void setargs(double new_atmISP, double new_vacISP, double new_escapeDV, 
+                 double new_totalMass, double new_fuelMass);
     
     void set_atmISP(double);
     void set_vacISP(double);

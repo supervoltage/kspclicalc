@@ -33,7 +33,7 @@ void TWR::set_totalThrust(std::vector<double> vec)
     if (vec.size() == 0)
         throw std::invalid_argument("no data in input");
     
-    tmp_totalThrust = 0;
+    double tmp_totalThrust = 0;
     for (auto& it : vec)
     {
         tmp_totalThrust += it;
