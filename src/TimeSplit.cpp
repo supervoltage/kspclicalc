@@ -1,18 +1,18 @@
 #include "TimeSplit.hpp"
 #include <cmath>
 
-TimeSplit()
+TimeSplit::TimeSplit()
 {
     clearall();
 }
 
-TimeSplit(std::pair<int, double> new_input_time)
+TimeSplit::TimeSplit(std::pair<int, double> new_input_time)
 {
     clearall();
     set_inputTime(new_input_time);
 }
 
-TimeSplit(int new_min, double new_sec)
+TimeSplit::TimeSplit(int new_min, double new_sec)
 {
     clearall();
     set_inputTime(new_min, new_sec);

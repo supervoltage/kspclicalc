@@ -1,11 +1,11 @@
 #include "TrueDV.hpp"
 
-TrueDV()
+TrueDV::TrueDV()
 {
     clearall();
 }
 
-TrueDV(double new_atmISP, double new_vacISP, double new_escapeDV, 
+TrueDV::TrueDV(double new_atmISP, double new_vacISP, double new_escapeDV, 
        double new_totalMass, double new_fuelMass)
 {
     clearall();
