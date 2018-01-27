@@ -10,6 +10,10 @@ private:
     std::pair<int, double> input_time;
     std::pair<int, double> result_time;
 public:
+    TimeSplit();
+    TimeSplit(std::pair<int, double>);
+    TimeSplit(int, double);
+    
     void clearargs();
     void clearresult();
     void clearall();
