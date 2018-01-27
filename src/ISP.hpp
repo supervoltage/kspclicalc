@@ -29,6 +29,10 @@ public:
     void set_engines(std::vector<engine>);  // set whole list
     void insert_engine(engine);             // insert one into list
     void insert_engine(double, double);     // insert one into list with direct values
+    
+    double operator()(std::vector<engine>);
+    double operator()(engine);
+    double operator()(double, double);
 };
 
 #endif

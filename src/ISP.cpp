@@ -92,3 +92,24 @@ void ISP::insert_engine(double isp, double thrust)
 {    
     insert_engine(engine(isp, thrust));
 }
+
+double ISP::operator()(std::vector<engine> vec)
+{
+    clearall();
+    set_engines(vec);
+    return calculate();
+}
+
+double ISP::operator()(engine eng)
+{
+    clearall();
+    insert_engine(eng);
+    return calculate();
+}
+
+double ISP::operator()(double isp, double thrust)
+{
+    clearall();
+    insert_engine(isp, thrust);
+    return calculate();
+}
