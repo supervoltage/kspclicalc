@@ -39,6 +39,10 @@ public:
     double get_massEngine();
     double get_massPayload();
     double get_fullEmptyRatio();
+    
+    double operator()(double new_deltaV, double new_isp, int new_nEngines,
+                      double new_massEngine, double new_massPayload,
+                      double new_fullEmptyRatio);
 };
 
 #endif

@@ -17,9 +17,18 @@
 
 int main()
 {
-    DeltaV dv;
+    FuelMass fm;
     
-    std::cout << dv(2, 345, 4) << "\n";
+    /*
+    set_deltaV          (new_deltaV);
+    set_isp             (new_isp);
+    set_nEngines        (new_nEngines);
+    set_massEngine      (new_massEngine);
+    set_massPayload     (new_massPayload);
+    set_fullEmptyRatio  (new_fullEmptyRatio);
+    */
+    
+    std::cout << fm(2000, 345, 1, 0.5, 5, 9) << "\n";
     
     return 0;
 }

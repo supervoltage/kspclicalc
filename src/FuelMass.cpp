@@ -8,8 +8,8 @@ FuelMass::FuelMass()
 }
 
 FuelMass::FuelMass(double new_deltaV, double new_isp, int new_nEngines,
-         double new_massEngine, double new_massPayload,
-         double new_fullEmptyRatio)
+                   double new_massEngine, double new_massPayload,
+                   double new_fullEmptyRatio)
 {
     clearall();
     setargs(new_deltaV, new_isp, new_nEngines, new_massEngine, new_massPayload,
@@ -128,4 +128,14 @@ double FuelMass::get_massPayload()
 double FuelMass::get_fullEmptyRatio()
 {
     return fullEmptyRatio;
+}
+
+double FuelMass::operator()(double new_deltaV, double new_isp, int new_nEngines,
+                            double new_massEngine, double new_massPayload,
+                            double new_fullEmptyRatio)
+{
+    clearall();
+    setargs(new_deltaV, new_isp, new_nEngines, new_massEngine, new_massPayload,
+            new_fullEmptyRatio);
+    return calculate();
 }
