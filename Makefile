@@ -5,6 +5,7 @@ SOURCES := $(shell find src/ -type f -name '*.cpp')
 OBJECTS := $(SOURCES:.cpp=.o)
 SDIR=src
 EXECUTABLE=kspclicalc
+ODIR=obj
 DEPS := $(SOURCES:.cpp=.h)
 
 all: $(SOURCES) $(EXECUTABLE)
@@ -12,8 +13,8 @@ all: $(SOURCES) $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS) 
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
-%.cpp%.o: $(SOURCES) $(DEPS)
-	$(CXX) $(CXXFLAGS) -o $@ $<
+$(ODIR)/%.o: $(SOURCES) $(DEPS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
 	rm $(OBJECTS)
