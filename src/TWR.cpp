@@ -38,10 +38,8 @@ void TWR::set_totalThrust(std::vector<double> vec)
     {
         tmp_totalThrust += it;
     }
-    if (tmp_totalThrust <= 0)
-        throw std::domain_error("totalThrust cannot be less than or equal to 0");
     
-    totalThrust = tmp_totalThrust;
+    set_totalThrust(tmp_totalThrust);
 }
 
 void TWR::set_totalMass(double newTotalMass)

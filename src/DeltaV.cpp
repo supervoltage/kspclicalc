@@ -42,10 +42,8 @@ void DeltaV::set_fuelMass(std::vector<double> vec)
     {
         tmpfuelMass += it;
     }
-    if (tmpfuelMass <= 0)
-        throw std::domain_error("fuel mass cannot be less than or equal to 0");
     
-    fuelMass = tmpfuelMass;
+    set_fuelMass(tmpfuelMass);
 }
 
 void DeltaV::set_isp(double newIsp)

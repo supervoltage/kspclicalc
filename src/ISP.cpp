@@ -89,11 +89,6 @@ void ISP::insert_engine(engine new_engine)
 }
 
 void ISP::insert_engine(double isp, double thrust)
-{
-    if (isp <= 0)
-        throw std::domain_error("isp cannot be less than or equal to 0");
-    if (thrust <= 0)
-        throw std::domain_error("thrust cannot be less than or equal to 0");
-    
-    engines.push_back(engine(isp, thrust));
+{    
+    insert_engine(engine(isp, thrust));
 }
