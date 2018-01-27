@@ -29,6 +29,8 @@ public:
     virtual void clearall();
     virtual void clearresult();
     virtual void clearargs();
+    
+    double operator()(double new_fuelMass, double new_isp, double new_totalMass);
 };
 
 #endif

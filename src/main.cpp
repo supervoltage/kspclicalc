@@ -19,9 +19,7 @@ int main()
 {
     DeltaV dv;
     
-    dv.setargs(2, 345, 4);
-    
-    std::cout << dv.calculate() << "\n";
+    std::cout << dv(2, 345, 4) << "\n";
     
     return 0;
 }

@@ -93,3 +93,10 @@ void DeltaV::clearargs()
     isp = 0;
     totalMass = 0;
 }
+
+double DeltaV::operator()(double new_fuelMass, double new_isp, double new_totalMass)
+{
+    clearall();
+    setargs(new_fuelMass, new_isp, new_totalMass);
+    return calculate();
+}
