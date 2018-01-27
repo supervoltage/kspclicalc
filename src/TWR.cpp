@@ -22,20 +22,31 @@ double TWR::get_totalMass()
 
 void TWR::set_totalThrust(double newTotalThrust)
 {
+    if (newTotalThrust <= 0)
+        throw std::domain_error("totalThrust cannot be less than or equal to 0");
     totalThrust = newTotalThrust;
 }
 
 void TWR::set_totalThrust(std::vector<double> vec)
 {
-    totalThrust = 0;
+    if (vec.size() == 0)
+        throw std::invalid_argument("no data in input");
+    
+    tmp_totalThrust = 0;
     for (auto& it : vec)
     {
-        totalThrust += it;
+        tmp_totalThrust += it;
     }
+    if (tmp_totalThrust <= 0)
+        throw std::domain_error("totalThrust cannot be less than or equal to 0");
+    
+    totalThrust = tmp_totalThrust;
 }
 
 void TWR::set_totalMass(double newTotalMass)
 {
+    if (newTotalMass <= 0)
+        throw std::domain_error("totalMass cannot be less than or equal to 0");
     totalMass = newTotalMass;
 }
 

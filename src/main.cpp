@@ -14,7 +14,7 @@
     // DeltaV       done
     // FuelMass     done
     // ISP          done
-    // TWR          pending
+    // TWR          done
     // TimeSplit    pending
     // TrueDV       pending
 // TODO: turn all classes into functors. take the input args via the () operator and calculate immediately.
