@@ -11,6 +11,9 @@ private:
     double totalThrust;
     double totalMass;
 public:
+    TWR();
+    TWR(double new_totalThrust, double new_totalMass);
+    
     double get_totalThrust();
     double get_totalMass();
     

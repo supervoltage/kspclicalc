@@ -1,5 +1,15 @@
 #include "TWR.hpp"
 
+TWR::TWR()
+{
+    clearall();
+}
+
+TWR::TWR(double new_totalThrust, double new_totalMass)
+{
+    setargs(new_totalThrust, new_totalMass);
+}
+
 double TWR::get_totalThrust()
 {
     return totalThrust;
