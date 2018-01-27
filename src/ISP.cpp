@@ -7,16 +7,19 @@ ISP::ISP()
 
 ISP::ISP(std::vector<engine> vec)
 {
+    clearall();
     set_engines(vec);
 }
 
 ISP::ISP(engine eng)
 {
+    clearall();
     insert_engine(eng);
 }
 
 ISP::ISP(double isp, double thrust)
 {
+    clearall();
     insert_engine(isp, thrust);
 }
 

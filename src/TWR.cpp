@@ -7,6 +7,7 @@ TWR::TWR()
 
 TWR::TWR(double new_totalThrust, double new_totalMass)
 {
+    clearall();
     setargs(new_totalThrust, new_totalMass);
 }
 

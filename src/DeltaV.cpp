@@ -8,6 +8,7 @@ DeltaV::DeltaV()
 
 DeltaV::DeltaV(double new_fuelMass, double new_isp, double new_totalMass)
 {
+    clearall();
     setargs(new_fuelMass, new_isp, new_totalMass);
 }
 
