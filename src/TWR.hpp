@@ -4,6 +4,7 @@
 #include "phys.hpp"
 #include "Calculator.hpp"
 #include <vector>
+#include <ostream>
 
 class TWR : public Calculator
 {
@@ -30,5 +31,7 @@ public:
     
     double operator()(double new_totalThrust, double new_totalMass);
 };
+
+std::ostream& operator<< (std::ostream& os, const TWR& twr);
 
 #endif

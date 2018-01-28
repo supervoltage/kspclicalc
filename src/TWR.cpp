@@ -85,3 +85,9 @@ double TWR::operator()(double new_totalThrust, double new_totalMass)
     setargs(new_totalThrust, new_totalMass);
     return calculate();
 }
+
+std::ostream& operator<< (std::ostream& os, const TWR& twr)
+{
+    os << twr.getResult();
+    return os;
+}

@@ -3,6 +3,7 @@
 
 #include "Calculator.hpp"
 #include <vector>
+#include <ostream>
 
 // we define an engine as a pair of parameters: ISP (s) and thrust (kN)
 typedef double in_isp;
@@ -34,5 +35,7 @@ public:
     double operator()(engine);
     double operator()(double, double);
 };
+
+std::ostream& operator<< (std::ostream& os, const ISP& isp);
 
 #endif

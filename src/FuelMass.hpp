@@ -2,6 +2,7 @@
 #define FUELMASS_H
 
 #include "Calculator.hpp"
+#include <ostream>
 
 class FuelMass : public Calculator
 {
@@ -44,5 +45,7 @@ public:
                       double new_massEngine, double new_massPayload,
                       double new_fullEmptyRatio);
 };
+
+std::ostream& operator<< (std::ostream& os, const FuelMass& fm);
 
 #endif

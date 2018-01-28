@@ -139,3 +139,9 @@ double FuelMass::operator()(double new_deltaV, double new_isp, int new_nEngines,
             new_fullEmptyRatio);
     return calculate();
 }
+
+std::ostream& operator<< (std::ostream& os, const FuelMass& fm)
+{
+    os << fm.getResult();
+    return os;
+}

@@ -12,7 +12,7 @@ public:
     virtual void clearresult() = 0;
     virtual void clearargs() = 0;
     
-    double getResult();
+    double getResult() const;
 };
 
 #endif

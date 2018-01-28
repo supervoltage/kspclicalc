@@ -113,3 +113,9 @@ double ISP::operator()(double isp, double thrust)
     insert_engine(isp, thrust);
     return calculate();
 }
+
+std::ostream& operator<< (std::ostream& os, const ISP& isp)
+{
+    os << isp.getResult();
+    return os;
+}

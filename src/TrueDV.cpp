@@ -144,3 +144,9 @@ double TrueDV::operator()(double new_atmISP, double new_vacISP,
     setargs(new_atmISP, new_vacISP, new_escapeDV, new_totalMass, new_fuelMass);
     return calculate();
 }
+
+std::ostream& operator<< (std::ostream& os, const TrueDV& tdv)
+{
+    os << tdv.getResult();
+    return os;
+}

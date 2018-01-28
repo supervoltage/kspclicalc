@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include "Calculator.hpp"
+#include <ostream>
 
 class DeltaV : public Calculator
 {
@@ -32,5 +33,7 @@ public:
     
     double operator()(double new_fuelMass, double new_isp, double new_totalMass);
 };
+
+std::ostream& operator<< (std::ostream& os, const DeltaV& dv);
 
 #endif

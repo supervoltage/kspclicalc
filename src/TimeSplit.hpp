@@ -22,7 +22,7 @@ public:
     
     std::pair<int, double> get_inputTime();
     void get_inputTime(int& minutes, double& seconds);
-    std::pair<int, double> getResult();
+    std::pair<int, double> getResult() const;
     void getResult(int& minutes, double& seconds);
     
     void set_inputTime(std::pair<int, double>);
@@ -32,6 +32,6 @@ public:
     std::pair<int, double> operator()(int, double);
 };
 
-std::ostream& operator<< (std::ostream& os, TimeSplit ts);
+std::ostream& operator<< (std::ostream& os, const TimeSplit& ts);
 
 #endif

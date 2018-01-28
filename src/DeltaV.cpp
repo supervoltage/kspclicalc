@@ -100,3 +100,9 @@ double DeltaV::operator()(double new_fuelMass, double new_isp, double new_totalM
     setargs(new_fuelMass, new_isp, new_totalMass);
     return calculate();
 }
+
+std::ostream& operator<< (std::ostream& os, const DeltaV& dv)
+{
+    os << dv.getResult();
+    return os;
+}

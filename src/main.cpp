@@ -10,7 +10,6 @@
 #include "TrueDV.hpp"
 #include "FuelMass.hpp"
 
-// TODO: add operator<< overloads for use with ostream's
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well

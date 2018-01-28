@@ -66,7 +66,7 @@ void TimeSplit::get_inputTime(int& minutes, double& seconds)
     seconds = input_time.second;
 }
 
-std::pair<int, double> TimeSplit::getResult()
+std::pair<int, double> TimeSplit::getResult() const
 {
     return result_time;
 }
@@ -111,7 +111,7 @@ std::pair<int, double> TimeSplit::operator()(int min, double sec)
     return getResult();
 }
 
-std::ostream& operator<< (std::ostream& os, TimeSplit ts)
+std::ostream& operator<< (std::ostream& os, const TimeSplit& ts)
 {
     std::pair<int, double> out_val = ts.getResult();
     os << out_val.first << "m" << out_val.second << "s";

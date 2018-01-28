@@ -43,4 +43,6 @@ public:
                       double new_totalMass, double new_fuelMass);
 };
 
+std::ostream& operator<< (std::ostream& os, const TrueDV& tdv);
+
 #endif
