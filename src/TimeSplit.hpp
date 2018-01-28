@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <stdexcept>
+#include <ostream>
 
 class TimeSplit
 {
@@ -26,6 +27,11 @@ public:
     
     void set_inputTime(std::pair<int, double>);
     void set_inputTime(int, double);
+    
+    std::pair<int, double> operator()(std::pair<int, double>);
+    std::pair<int, double> operator()(int, double);
 };
+
+std::ostream& operator<< (std::ostream& os, TimeSplit ts);
 
 #endif

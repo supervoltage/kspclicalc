@@ -17,9 +17,10 @@
 
 int main()
 {
-    TWR twr;
+    TimeSplit ts(10,30);
+    ts.calculate();
     
-    std::cout << twr(345, 50) << "\n";
+    std::cout << ts << "\n";
     
     return 0;
 }

@@ -93,3 +93,27 @@ void TimeSplit::set_inputTime(int min, double sec)
     std::pair<int, double> new_input_time(min, sec);
     set_inputTime(new_input_time);
 }
+
+
+std::pair<int, double> TimeSplit::operator()(std::pair<int, double> in_time)
+{
+    clearall();
+    set_inputTime(in_time);
+    calculate();
+    return getResult();
+}
+
+std::pair<int, double> TimeSplit::operator()(int min, double sec)
+{
+    clearall();
+    set_inputTime(min, sec);
+    calculate();
+    return getResult();
+}
+
+std::ostream& operator<< (std::ostream& os, TimeSplit ts)
+{
+    std::pair<int, double> out_val = ts.getResult();
+    os << out_val.first << "m" << out_val.second << "s";
+    return os;
+}
