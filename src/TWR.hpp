@@ -27,6 +27,8 @@ public:
     virtual void clearall();
     virtual void clearresult();
     virtual void clearargs();
+    
+    double operator()(double new_totalThrust, double new_totalMass);
 };
 
 #endif

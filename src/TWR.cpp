@@ -78,3 +78,10 @@ void TWR::clearargs()
     totalThrust = 0;
     totalMass = 0;
 }
+
+double TWR::operator()(double new_totalThrust, double new_totalMass)
+{
+    clearall();
+    setargs(new_totalThrust, new_totalMass);
+    return calculate();
+}

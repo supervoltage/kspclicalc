@@ -17,9 +17,9 @@
 
 int main()
 {
-    ISP isp;
+    TWR twr;
     
-    std::cout << isp(345, 50) << "\n";
+    std::cout << twr(345, 50) << "\n";
     
     return 0;
 }
