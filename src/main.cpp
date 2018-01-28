@@ -3,12 +3,12 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "DeltaV.hpp"
-#include "TWR.hpp"
-#include "TimeSplit.hpp"
-#include "ISP.hpp"
-#include "TrueDV.hpp"
-#include "FuelMass.hpp"
+#include "calc/DeltaV.hpp"
+#include "calc/TWR.hpp"
+#include "calc/TimeSplit.hpp"
+#include "calc/ISP.hpp"
+#include "calc/TrueDV.hpp"
+#include "calc/FuelMass.hpp"
 
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
