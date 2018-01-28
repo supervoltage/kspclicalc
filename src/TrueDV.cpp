@@ -135,3 +135,12 @@ double TrueDV::get_fuelMass()
 {
     return fuelMass;
 }
+
+double TrueDV::operator()(double new_atmISP, double new_vacISP, 
+                          double new_escapeDV, double new_totalMass,
+                          double new_fuelMass)
+{
+    clearall();
+    setargs(new_atmISP, new_vacISP, new_escapeDV, new_totalMass, new_fuelMass);
+    return calculate();
+}

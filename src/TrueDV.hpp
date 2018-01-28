@@ -38,6 +38,9 @@ public:
     double get_escapeDV();
     double get_totalMass();
     double get_fuelMass();
+    
+    double operator()(double new_atmISP, double new_vacISP, double new_escapeDV, 
+                      double new_totalMass, double new_fuelMass);
 };
 
 #endif
