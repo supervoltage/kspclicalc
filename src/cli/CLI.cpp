@@ -21,7 +21,17 @@ void CLI::load_input(std::vector<std::string> > input)
     // above steps are highly subject to change.
 }
 
-void CLI::get_prog_name()
+std::string CLI::get_prog_name()
 {
     return m_prog_name;
+}
+
+void CLI::set_verbose(bool)
+{
+    m_verbose = true;
+}
+
+bool CLI::is_verbose()
+{
+    return m_verbose;
 }

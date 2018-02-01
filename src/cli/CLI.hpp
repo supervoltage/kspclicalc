@@ -29,13 +29,16 @@ class CLI
 {
 private:
     std::string m_prog_name;
+    bool m_verbose;
     
 public:
     CLI(std::vector<std::string> > input);
     
     void load_input(std::vector<std::string> > input);
-    void get_prog_name();
+    std::string get_prog_name();
     
+    void set_verbose(bool);
+    bool is_verbose();
 };
 
 #endif
