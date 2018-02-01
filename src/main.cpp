@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <string>
 #include "calc/DeltaV.hpp"
 #include "calc/TWR.hpp"
 #include "calc/TimeSplit.hpp"
@@ -33,11 +34,13 @@
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well
 
-int main()
+int main(int argc, char** argv)
 {
-    CLI cli;
+    std::vector<std::string> input;
+    for(int i = 0; i < argc; ++i)
+        input.push_back(argv[i]);
     
-    cli.register("dv", "deltav", 3, 3);
+    CLI cli(input);
     
     return 0;
 }

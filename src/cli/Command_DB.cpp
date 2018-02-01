@@ -1,0 +1,42 @@
+#include "Command_DB.hpp"
+#include <algorithm>
+#include <stdexcept>
+
+Command_DB::Command_DB()
+{}
+
+Command_DB::Command_DB(Command cmd)
+{
+    insert_Command(cmd);
+}
+
+Command_DB::Command_DB(std::vector<Command> db)
+{
+    set_DB(db);
+}
+
+void Command_DB::reset_DB()
+{
+    m_db.clear();
+}
+
+void Command_DB::set_DB(std::vector<Command> db)
+{
+    m_db = db;
+}
+
+void Command_DB::insert_Command(Command cmd)
+{
+    m_db.push_back(cmd);
+}
+
+Command Command_DB::search(std::string cmd_name)
+{
+    std::vector<Command>::const_iterator it;
+    it = find(m_db.begin(), m_db.end(), cmd_name);
+    
+    if (it != m_db.end())
+        return *it;
+    else
+        throw std::range_error("Command not found in database");
+}
