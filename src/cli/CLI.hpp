@@ -32,9 +32,9 @@ private:
     bool m_verbose;
     
 public:
-    CLI(std::vector<std::string> > input);
+    CLI(std::vector<std::string> input);
     
-    void load_input(std::vector<std::string> > input);
+    void load_input(std::vector<std::string> input);
     std::string get_prog_name();
     
     void set_verbose(bool);

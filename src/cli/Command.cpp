@@ -1,14 +1,15 @@
 #include "Command.hpp"
 #include <stdexcept>
 
-Command::Command(std::string cmd, unsigned int min_arg_count, unsigned int max_arg_count)
-    : m_cmd(cmd),, m_min_arg_count(min_arg_count),
-      m_max_arg_count(max_arg_count)
+Command::Command(std::string cmd, unsigned int min_arg_count, unsigned int max_arg_count,
+                 std::vector<argument> arg_list)
+    : m_cmd(cmd), m_min_arg_count(min_arg_count), m_max_arg_count(max_arg_count),
+      m_arg_list(arg_list)
 {}
 
-std::string Command::get_scmd() const
+std::string Command::get_cmd() const
 {
-    return m_scmd;
+    return m_cmd;
 }
 
 const unsigned int Command::get_min_arg_count() const
@@ -51,4 +52,5 @@ std::ostream& Command::printHelp(std::ostream& os, bool detail) const
             os << "\t" << it.first << "\t" << it.second << "\n";
         }
     }
+    return os;
 }

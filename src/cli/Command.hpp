@@ -34,12 +34,13 @@ private:
 public:
     Command(std::string cmd, unsigned int min_arg_count, unsigned int max_arg_count,
             std::vector<argument> arg_list);
-    std::string get_scmd() const;
+    std::string get_cmd() const;
     const unsigned int get_min_arg_count() const;
     const unsigned int get_max_arg_count() const;
     const std::vector<argument> get_arg_list() const;
     
     std::ostream& printHelp(std::ostream& os, bool detail) const;
+    // need to include assignment operator
 };
 
 #endif

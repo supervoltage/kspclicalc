@@ -29,7 +29,7 @@ public:
     void set_DB(std::vector<Command> db);
     void insert_Command(Command cmd);
     
-    Command search(std::string cmd_name);
+    // Command search(std::string cmd_name);
 };
 
 #endif

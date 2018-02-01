@@ -1,11 +1,11 @@
 #include "CLI.hpp"
 
-CLI::CLI(std::vector<std::string> > input)
+CLI::CLI(std::vector<std::string> input)
 {
     load_input(input);
 }
 
-void CLI::load_input(std::vector<std::string> > input)
+void CLI::load_input(std::vector<std::string> input)
 {
     // extract the program name
     m_prog_name = input[0];
