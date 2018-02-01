@@ -19,6 +19,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <ostream>
 
 // first string is the argument's name, the second is its description
 typedef std::pair<std::string, std::string> argument;
@@ -37,6 +38,8 @@ public:
     const unsigned int get_min_arg_count() const;
     const unsigned int get_max_arg_count() const;
     const std::vector<argument> get_arg_list() const;
+    
+    std::ostream& printHelp(std::ostream& os, bool detail) const;
 };
 
 #endif

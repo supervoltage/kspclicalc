@@ -25,3 +25,30 @@ const std::vector<argument> Command::get_arg_list() const
 {
     return m_arg_list;
 }
+
+std::ostream& Command::printHelp(std::ostream& os, bool detail) const
+{
+    // print out line of format: command_name [arg1] [arg2] [arg3]...
+    os << "Syntax: " << m_cmd;
+    for (auto& it : m_arg_list)
+    {
+        os << " [" << it.first << "]";
+    }
+    os << "\n";
+    
+    // print several lines of below format and example output:
+    /* Description of arguments:
+     *     [arg1]   [desc1]
+     *     [arg2]   [desc2]
+     * ...
+    */
+    
+    if (detail)
+    {
+        os << "Description of arguments:\n";
+        for (auto& it : m_arg_list)
+        {
+            os << "\t" << it.first << "\t" << it.second << "\n";
+        }
+    }
+}
