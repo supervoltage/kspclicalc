@@ -16,6 +16,12 @@
 #include <string>
 #include "Command.hpp"
 
+class Searcher
+{
+public:
+    virtual bool cmp(const Command&) = 0;
+};
+
 class Command_DB
 {
 private:
@@ -30,6 +36,7 @@ public:
     void insert_Command(Command cmd);
     
     // Command search(std::string cmd_name);
+    std::vector<Command> search(Searcher* srch);
 };
 
 #endif

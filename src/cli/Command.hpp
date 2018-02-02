@@ -40,7 +40,6 @@ public:
     const std::vector<argument> get_arg_list() const;
     
     std::ostream& printHelp(std::ostream& os, bool detail) const;
-    // need to include assignment operator
 };
 
 #endif

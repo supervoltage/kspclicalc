@@ -47,3 +47,14 @@ Command Command_DB::search(std::string cmd_name)
         throw std::range_error("Command not found in database");
 }
 */
+
+std::vector<Command> Command_DB::search(Searcher* srch)
+{
+    std::vector<Command> out;
+    for (const auto& it : m_db)
+    {
+        if (srch->cmp(it))
+            out.push_back(it);
+    }
+    return out;
+}
