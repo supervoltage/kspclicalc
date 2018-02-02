@@ -22,7 +22,10 @@ void Command_DB::reset_DB()
 
 void Command_DB::set_DB(std::vector<Command> db)
 {
-    m_db = db;
+    m_db.clear();
+    for (auto& it : db)
+        m_db.push_back(it);
+    
 }
 
 void Command_DB::insert_Command(Command cmd)
