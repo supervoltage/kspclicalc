@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "Command_DB.hpp"
 
 // In essence this class does the below:
 /*  - Read input, detect program name and extract it
@@ -30,6 +31,7 @@ class CLI
 private:
     std::string m_prog_name;
     bool m_verbose;
+    Command_DB m_cmd_db;
     
 public:
     CLI(std::vector<std::string> input);
@@ -39,6 +41,8 @@ public:
     
     void set_verbose(bool);
     bool is_verbose();
+    
+    void register_command(Command& cmd);
 };
 
 #endif

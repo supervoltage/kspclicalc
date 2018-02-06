@@ -9,6 +9,8 @@ void CLI::load_input(std::vector<std::string> input)
 {
     // extract the program name
     m_prog_name = input[0];
+    if (m_prog_name[0] == '.' && m_prog_name[1] == '/')
+        m_prog_name.erase(0,2);
     
     // loop through all elements of input vector apart from the first
         // if first char is a hyphen ( - )
@@ -34,4 +36,9 @@ void CLI::set_verbose(bool)
 bool CLI::is_verbose()
 {
     return m_verbose;
+}
+
+void CLI::register_command(Command& cmd)
+{
+    m_cmd_db.insert_Command(cmd);
 }

@@ -36,11 +36,24 @@
 
 int main(int argc, char** argv)
 {
+    // get all the input from the commandline and put it in the CLI class
     std::vector<std::string> input;
     for(int i = 0; i < argc; ++i)
         input.push_back(argv[i]);
-    
     CLI cli(input);
+    
+    // print out the program's name
+    std::cout << cli.get_prog_name() << "\n";
+    
+    // register an identifiable command of some sort for the program to look for
+    std::vector<argument> arg_list;
+    arg_list.push_back(std::pair<std::string, std::string>("isp", "specific impulse of engines"));
+    arg_list.push_back(std::pair<std::string, std::string>("totalmass", "total mass of stage"));
+    arg_list.push_back(std::pair<std::string, std::string>("fuelmass", "mass of all fuel in stage, including oxidizer"));
+    Command com("-dv", 3, 3, arg_list);
+    
+    com.printHelp(std::cout, true);
+    cli.register_command(com);
     
     return 0;
 }
