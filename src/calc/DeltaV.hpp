@@ -13,6 +13,7 @@ private:
     double isp;
     double totalMass;
 public:
+    ~DeltaV();
     DeltaV();
     DeltaV(double new_fuelMass, double new_isp, double new_totalMass);
     DeltaV(const std::vector<std::string>& in_arg_list);

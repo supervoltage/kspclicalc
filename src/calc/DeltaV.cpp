@@ -5,6 +5,9 @@
 #define MAX_ARG_COUNT 3
 #define MIN_ARG_COUNT 3
 
+DeltaV::~DeltaV()
+{}
+
 DeltaV::DeltaV()
 {
     clearall();

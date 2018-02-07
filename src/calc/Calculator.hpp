@@ -8,13 +8,13 @@
 class Calculator {
 protected:
     double m_result;
-public: 
+public:
     virtual double calculate() = 0;
     virtual void clearall() = 0;
     virtual void clearresult() = 0;
     virtual void clearargs() = 0;
     
-    virtual void setargs(std::vector<std::string> in_arg_list) = 0;
+    virtual void setargs(const std::vector<std::string>& in_arg_list) = 0;
     
     double getResult() const;
 };

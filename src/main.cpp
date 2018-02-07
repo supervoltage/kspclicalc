@@ -55,5 +55,12 @@ int main(int argc, char** argv)
     com.printHelp(std::cout, true);
     cli.register_command(com);
     
+    Calculator* dv = new DeltaV;
+    std::vector<std::string> in_arg_list {"345", "10", "5"};
+    dv->setargs(in_arg_list);
+    std::cout << dv->calculate() << "\n";
+    
+    delete dv;
+    
     return 0;
 }
