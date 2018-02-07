@@ -1,5 +1,9 @@
 #include "DeltaV.hpp"
 #include "phys.hpp"
+#include <cstdlib>
+
+#define MAX_ARG_COUNT 3
+#define MIN_ARG_COUNT 3
 
 DeltaV::DeltaV()
 {
@@ -10,6 +14,11 @@ DeltaV::DeltaV(double new_fuelMass, double new_isp, double new_totalMass)
 {
     clearall();
     setargs(new_fuelMass, new_isp, new_totalMass);
+}
+
+DeltaV::DeltaV(const std::vector<std::string>& in_arg_list)
+{
+    setargs(in_arg_list);
 }
 
 double DeltaV::get_fuelMass()
@@ -60,13 +69,27 @@ void DeltaV::set_totalMass(double newTotalMass)
     totalMass = newTotalMass;
 }
 
-void DeltaV::setargs(double new_fuelMass, double new_isp, double new_totalMass)
+void DeltaV::setargs(double new_isp, double new_totalMass, double new_fuelMass)
 {
-    set_fuelMass(new_fuelMass);
     set_isp(new_isp);
     set_totalMass(new_totalMass);
+    set_fuelMass(new_fuelMass);
 }
 
+void DeltaV::setargs(const std::vector<std::string>& in_arg_list)
+{
+    std::vector<std::string>::size_type arg_list_count = in_arg_list.size();
+    if (arg_list_count >= MIN_ARG_COUNT && arg_list_count <= MAX_ARG_COUNT)
+    {
+        // we can use direct indexing of the input argument list as we know we definitely have
+        // enough arguments
+        set_isp(atof(in_arg_list[0].c_str()));
+        set_totalMass(atof(in_arg_list[1].c_str()));
+        set_fuelMass(atof(in_arg_list[2].c_str()));
+    }
+    else
+        throw std::invalid_argument("invalid number of arguments");
+}
 
 // base class pure virtual functions implementations
 

@@ -9,12 +9,13 @@
 class DeltaV : public Calculator
 {
 private:
-    double  fuelMass;
-    double  isp;
-    double  totalMass;
+    double fuelMass;
+    double isp;
+    double totalMass;
 public:
     DeltaV();
     DeltaV(double new_fuelMass, double new_isp, double new_totalMass);
+    DeltaV(const std::vector<std::string>& in_arg_list);
     double get_fuelMass();
     double get_isp();
     double get_totalMass();
@@ -24,7 +25,8 @@ public:
     void set_isp(double);
     void set_totalMass(double);
     
-    void setargs(double new_fuelMass, double new_isp, double new_totalMass);
+    void setargs(double new_isp, double new_totalMass, double new_fuelMass);
+    virtual void setargs(const std::vector<std::string>& in_arg_list);
     
     virtual double calculate();
     virtual void clearall();
