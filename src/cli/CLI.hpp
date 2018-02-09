@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <ostream>
 #include "Command_DB.hpp"
 
 // In essence this class does the below:
@@ -43,6 +44,7 @@ public:
     bool is_verbose();
     
     void register_command(Command& cmd);
+    std::ostream& printCapabilities(std::ostream& os);
 };
 
 #endif

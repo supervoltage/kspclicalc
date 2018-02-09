@@ -58,3 +58,9 @@ std::vector<Command> Command_DB::search(Searcher* srch)
     }
     return out;
 }
+
+const std::vector<Command>& Command_DB::get_db()
+{
+    const std::vector<Command>& ret_db = m_db;
+    return ret_db;
+}

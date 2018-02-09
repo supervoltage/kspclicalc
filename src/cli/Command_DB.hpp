@@ -37,6 +37,7 @@ public:
     
     // Command search(std::string cmd_name);
     std::vector<Command> search(Searcher* srch);
+    const std::vector<Command>& get_db();
 };
 
 #endif

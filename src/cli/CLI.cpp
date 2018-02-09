@@ -42,3 +42,13 @@ void CLI::register_command(Command& cmd)
 {
     m_cmd_db.insert_Command(cmd);
 }
+
+std::ostream& CLI::printCapabilities(std::ostream& os)
+{
+    // more things to be added here later
+    for (auto& it : m_cmd_db.get_db())
+    {
+        it.printHelp(os, false);
+    }
+    return os;
+}

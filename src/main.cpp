@@ -34,6 +34,9 @@
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well
 
+// putting all CLI command definitions inside a function to not pollute the main function so much
+void setupCommands(CLI& cli);
+
 int main(int argc, char** argv)
 {
     // get all the input from the commandline and put it in the CLI class
@@ -41,26 +44,29 @@ int main(int argc, char** argv)
     for(int i = 0; i < argc; ++i)
         input.push_back(argv[i]);
     CLI cli(input);
+    setupCommands(cli);
+
+    std::cout << "Program name: " << cli.get_prog_name() << "\n";
     
-    // print out the program's name
-    std::cout << cli.get_prog_name() << "\n";
+    cli.printCapabilities(std::cout) << "\n";
     
-    // register an identifiable command of some sort for the program to look for
+    // test pointer usage
+    Calculator* cal = new DeltaV;
+    std::vector<std::string> in_arg_list {"345", "10", "5"};
+    cal->setargs(in_arg_list);
+    std::cout << cal->calculate() << "\n";
+    
+    delete cal;
+    
+    return 0;
+}
+
+void setupCommands(CLI& cli)
+{
     std::vector<argument> arg_list;
     arg_list.push_back(std::pair<std::string, std::string>("isp", "specific impulse of engines"));
     arg_list.push_back(std::pair<std::string, std::string>("totalmass", "total mass of stage"));
     arg_list.push_back(std::pair<std::string, std::string>("fuelmass", "mass of all fuel in stage, including oxidizer"));
     Command com("-dv", 3, 3, arg_list);
-    
-    com.printHelp(std::cout, true);
     cli.register_command(com);
-    
-    Calculator* dv = new DeltaV;
-    std::vector<std::string> in_arg_list {"345", "10", "5"};
-    dv->setargs(in_arg_list);
-    std::cout << dv->calculate() << "\n";
-    
-    delete dv;
-    
-    return 0;
 }

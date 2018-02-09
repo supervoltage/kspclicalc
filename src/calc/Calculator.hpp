@@ -9,6 +9,7 @@ class Calculator {
 protected:
     double m_result;
 public:
+    virtual ~Calculator() {};
     virtual double calculate() = 0;
     virtual void clearall() = 0;
     virtual void clearresult() = 0;
