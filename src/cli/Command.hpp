@@ -28,13 +28,15 @@ class Command
 {
 private:
     const std::string m_cmd;
+    const std::string m_desc;
     const unsigned int m_min_arg_count;
     const unsigned int m_max_arg_count;
     const std::vector<argument> m_arg_list;
 public:
-    Command(std::string cmd, unsigned int min_arg_count, unsigned int max_arg_count,
-            std::vector<argument> arg_list);
+    Command(std::string cmd, std::string desc, unsigned int min_arg_count,
+            unsigned int max_arg_count, std::vector<argument> arg_list);
     std::string get_cmd() const;
+    std::string get_desc() const;
     const unsigned int get_min_arg_count() const;
     const unsigned int get_max_arg_count() const;
     const std::vector<argument> get_arg_list() const;

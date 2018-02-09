@@ -2,6 +2,9 @@
 #include "phys.hpp"
 #include <cmath>
 
+#define MAX_ARG_COUNT 6
+#define MIN_ARG_COUNT 6
+
 FuelMass::FuelMass()
 {
     clearall();
@@ -14,6 +17,11 @@ FuelMass::FuelMass(double new_deltaV, double new_isp, int new_nEngines,
     clearall();
     setargs(new_deltaV, new_isp, new_nEngines, new_massEngine, new_massPayload,
             new_fullEmptyRatio);
+}
+
+FuelMass::FuelMass(const std::vector<std::string>& in_arg_list)
+{
+    setargs(in_arg_list);
 }
 
 double FuelMass::calculate()
@@ -56,6 +64,24 @@ void FuelMass::setargs(double new_deltaV, double new_isp, int new_nEngines,
     set_massEngine      (new_massEngine);
     set_massPayload     (new_massPayload);
     set_fullEmptyRatio  (new_fullEmptyRatio);
+}
+
+void FuelMass::setargs(const std::vector<std::string>& in_arg_list)
+{
+    std::vector<std::string>::size_type arg_list_count = in_arg_list.size();
+    if (arg_list_count >= MIN_ARG_COUNT && arg_list_count <= MAX_ARG_COUNT)
+    {
+        // we can use direct indexing of the input argument list as we know we definitely have
+        // enough arguments
+        set_deltaV(atof(in_arg_list[0].c_str()));
+        set_isp(atof(in_arg_list[1].c_str()));
+        set_nEngines(atoi(in_arg_list[2].c_str()));
+        set_massEngine(atof(in_arg_list[3].c_str()));
+        set_massPayload(atof(in_arg_list[4].c_str()));
+        set_fullEmptyRatio(atof(in_arg_list[5].c_str()));
+    }
+    else
+        throw std::invalid_argument("invalid number of arguments");
 }
 
 void FuelMass::set_deltaV(double new_deltaV)

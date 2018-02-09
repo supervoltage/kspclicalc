@@ -1,15 +1,20 @@
 #include "Command.hpp"
 #include <stdexcept>
 
-Command::Command(std::string cmd, unsigned int min_arg_count, unsigned int max_arg_count,
-                 std::vector<argument> arg_list)
-    : m_cmd(cmd), m_min_arg_count(min_arg_count), m_max_arg_count(max_arg_count),
+Command::Command(std::string cmd, std::string desc, unsigned int min_arg_count,
+                 unsigned int max_arg_count, std::vector<argument> arg_list)
+    : m_cmd(cmd), m_desc(desc), m_min_arg_count(min_arg_count), m_max_arg_count(max_arg_count),
       m_arg_list(arg_list)
 {}
 
 std::string Command::get_cmd() const
 {
     return m_cmd;
+}
+
+std::string Command::get_desc() const
+{
+    return m_desc;
 }
 
 const unsigned int Command::get_min_arg_count() const
@@ -35,7 +40,7 @@ std::ostream& Command::printHelp(std::ostream& os, bool detail) const
     {
         os << " [" << it.first << "]";
     }
-    os << "\n";
+    os << "\n" << "Description: " << m_desc << "\n";
     
     // print several lines of below format and example output:
     /* Description of arguments:

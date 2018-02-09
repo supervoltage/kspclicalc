@@ -18,6 +18,7 @@ public:
     FuelMass(double new_deltaV, double new_isp, int new_nEngines,
              double new_massEngine, double new_massPayload,
              double new_fullEmptyRatio);
+    FuelMass(const std::vector<std::string>& in_arg_list);
     virtual double calculate();
     virtual void clearall();
     virtual void clearresult();
@@ -26,6 +27,7 @@ public:
     void setargs(double new_deltaV, double new_isp, int new_nEngines,
                  double new_massEngine, double new_massPayload,
                  double new_fullEmptyRatio);
+    virtual void setargs(const std::vector<std::string>& in_arg_list);
     
     void set_deltaV(double);
     void set_isp(double);
