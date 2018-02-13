@@ -16,6 +16,27 @@
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well
 
+
+/*I could resort to my previous "functionette" idea in which the end user would write a "function"
+ * into the commandline after the program name:
+ *      kspclicalc dv(345, 5, 2.5)
+ * 
+ * The above would calculate the required information for DeltaV and spit it out. That also means
+ * we can put multiple functionettes inside of each other:
+ *      kspclicalc dv(345, 5, cpu(88.58))
+ * which would calculate cpu() first, replace the third argument with the output, then calculate the
+ * dv() functionette.
+ * 
+ * Regex to search for a functionette: \w+\(.+\)
+ * 
+ * The functionette idea is still not compliant with GNU, but then again this program is not very
+ * easy to write in a GNU compliant manner. It's not.. simple enough. It's not just a simple tool
+ * like a calculator filled with buttons or simpler commands like "ls", "cd", "mv" etc.
+ * 
+ * Then again, "sed" is not a fully compliant GNU program as it makes use of string-based commands.
+ * That makes me feel better about using the functionette idea.
+*/
+
 int main(int argc, char** argv)
 {    
     // test pointer usage
@@ -26,8 +47,9 @@ int main(int argc, char** argv)
     
     delete cal;
     
-    Option opt("dv", "--delta-v");
-    opt.store("true");
+    
+    Option opt("f", "functionette");
+    opt.store("dv(1, 2, 3)");
     
     std::cout << opt.get_short_name() << " " << opt.get_long_name() << "\n";
     
