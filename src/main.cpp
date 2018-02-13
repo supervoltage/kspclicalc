@@ -10,6 +10,7 @@
 #include "calc/ISP.hpp"
 #include "calc/TrueDV.hpp"
 #include "calc/FuelMass.hpp"
+#include "cli/Option.hpp"
 
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
@@ -24,6 +25,13 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
+    
+    Option opt("dv", "--delta-v");
+    opt.store("true");
+    
+    std::cout << opt.get_short_name() << " " << opt.get_long_name() << "\n";
+    
+    std::cout << opt.get_result<std::string>() << "\n";
     
     return 0;
 }
