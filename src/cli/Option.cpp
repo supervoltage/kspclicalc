@@ -3,8 +3,8 @@
 #include <string>
 #include <algorithm>
 
-Option::Option(std::string short_name, std::string long_name, bool positional)
-    : m_positional(positional)
+Option::Option(std::string short_name, std::string long_name, bool positional, bool repeatable)
+    : m_positional(positional), m_repeatable(repeatable)
 {
     if (short_name[0] != '-')
     {
@@ -25,6 +25,7 @@ Option::Option(std::string short_name, std::string long_name, bool positional)
 std::string Option::get_short_name() const { return m_short_name; }
 std::string Option::get_long_name() const  { return m_long_name; }
 bool Option::is_positional() const { return m_positional; }
+bool Option::is_repeatable() const { return m_repeatable; }
 
 template <typename T>
 T Option::get_result() const

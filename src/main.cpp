@@ -59,15 +59,15 @@ int main(int argc, char** argv)
     
     std::vector<Option> opt_db;
     
-    Option* opt = new Option("f", "functionette", true);
+    Option* opt = new Option("f", "functionette", true, true);
     opt_db.push_back(*opt);
     delete opt;
     
-    opt = new Option("h", "help", false);
+    opt = new Option("h", "help", false, false);
     opt_db.push_back(*opt);
     delete opt;
     
-    opt = new Option("a", "about", false);
+    opt = new Option("a", "about", false, false);
     opt_db.push_back(*opt);
     delete opt;
     
