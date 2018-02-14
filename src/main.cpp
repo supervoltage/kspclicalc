@@ -12,6 +12,8 @@
 #include "calc/FuelMass.hpp"
 #include "cli/Option.hpp"
 
+#include <stdexcept>
+
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well
@@ -37,6 +39,8 @@
  * That makes me feel better about using the functionette idea.
 */
 
+#include <map>
+
 int main(int argc, char** argv)
 {    
     // test pointer usage
@@ -50,6 +54,8 @@ int main(int argc, char** argv)
     std::vector<std::string> input;
     for(int i = 0; i < argc; ++i)
         input.push_back(argv[i]);
+    
+    input.erase(input.begin());
     
     std::vector<Option> opt_db;
     
@@ -65,7 +71,46 @@ int main(int argc, char** argv)
     opt_db.push_back(*opt);
     delete opt;
     
+    for (const auto& it : opt_db)
+    {
+        std::cout << it.get_short_name() << " " << it.get_long_name() << "\n";
+        it.is_positional() ? std::cout << "is positional\n" : std::cout << "is not positional\n";
+    }
     
+    std::cout << "\n";
+    
+    std::map<std::string, std::string> results;
+
+    for (std::vector<std::string>::size_type i = 0; i < input.size(); ++i)
+    {
+        bool match = false;
+        for (const auto& db_arg : opt_db)
+        {
+            if (input[i] == db_arg.get_short_name() || input[i] == db_arg.get_long_name())
+            {
+                if (db_arg.is_positional())
+                {
+                    results[input[i]] = input[i+1];
+                    match = true;
+                    ++i;
+                }
+                else
+                {
+                    results[input[i]] = "true";
+                    match = true;
+                }
+                break;
+            }
+            else continue;
+        }
+        if (match == false)
+            std::cerr << "invalid argument: " << input[i] << "\n";
+    }
+    
+    for (const auto& it : results)
+    {
+        std::cout << it.first << " " << it.second << "\n";
+    }
     
     return 0;
 }
