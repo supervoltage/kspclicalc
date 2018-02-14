@@ -1,7 +1,10 @@
 #include "Option.hpp"
 #include <cstdlib>
+#include <string>
+#include <algorithm>
 
-Option::Option(std::string short_name, std::string long_name)
+Option::Option(std::string short_name, std::string long_name, bool positional)
+    : m_positional(positional)
 {
     if (short_name[0] != '-')
     {
@@ -21,6 +24,7 @@ Option::Option(std::string short_name, std::string long_name)
 
 std::string Option::get_short_name() const { return m_short_name; }
 std::string Option::get_long_name() const  { return m_long_name; }
+bool Option::is_positional() const { return m_positional; }
 
 template <typename T>
 T Option::get_result() const
@@ -42,6 +46,7 @@ void Option::store(std::string arg)        { m_result = arg; }
 template<>
 bool Option::get_result<bool>() const
 {
+    /* This can cause unwanted behaviour
     char ch = m_result[0];
     switch (ch)
     {
@@ -57,5 +62,13 @@ bool Option::get_result<bool>() const
         case 'F': return false;
         case '0': return false;
         default: return false;
-    }
+    } */
+    
+    std::string str = m_result;
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    
+    if (str == "true" || str == "yes" || str == "y" || str == "1")
+        return true;
+    else
+        return false;
 }

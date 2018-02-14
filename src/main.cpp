@@ -47,13 +47,25 @@ int main(int argc, char** argv)
     
     delete cal;
     
+    std::vector<std::string> input;
+    for(int i = 0; i < argc; ++i)
+        input.push_back(argv[i]);
     
-    Option opt("f", "functionette");
-    opt.store("dv(1, 2, 3)");
+    std::vector<Option> opt_db;
     
-    std::cout << opt.get_short_name() << " " << opt.get_long_name() << "\n";
+    Option* opt = new Option("f", "functionette", true);
+    opt_db.push_back(*opt);
+    delete opt;
     
-    std::cout << opt.get_result<std::string>() << "\n";
+    opt = new Option("h", "help", false);
+    opt_db.push_back(*opt);
+    delete opt;
+    
+    opt = new Option("a", "about", false);
+    opt_db.push_back(*opt);
+    delete opt;
+    
+    
     
     return 0;
 }

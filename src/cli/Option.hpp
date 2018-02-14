@@ -13,10 +13,12 @@ private:
     std::string m_short_name;   //short option name (aka single hyphen)
     std::string m_long_name;    //long option name (aka double hyphen)
     std::string m_result;
+    const bool m_positional;
 public:
-    Option(std::string short_name, std::string long_name);
+    Option(std::string short_name, std::string long_name, bool positional);
     std::string get_short_name() const;
     std::string get_long_name() const;
+    bool is_positional() const;
     
     template <typename T>
     T get_result() const;

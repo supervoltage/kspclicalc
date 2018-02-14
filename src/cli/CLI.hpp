@@ -23,7 +23,7 @@ class CLI
 {
 private:
     std::vector<Option> m_opt_db;   // options to look out for, as defined by user
-    std::vector<Option> m_opt_defaults; // default options/flags, as defined by user
+    std::vector<std::string> m_opt_defaults; // default options/flags, as defined by user
 public:
 };
 
