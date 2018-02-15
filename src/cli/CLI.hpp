@@ -24,7 +24,19 @@ class CLI
 private:
     std::vector<Option> m_opt_db;   // options to look out for, as defined by user
     std::vector<std::string> m_opt_defaults; // default options/flags, as defined by user
+    std::vector<std::string> m_user_input;  // input, typically argc+argv
+    std::vector<std::pair<std::string, std::string> > m_results;    // vector to store results in
+    
+    const std::string m_prog_name;      // name of program
+    const std::string m_prog_desc;      // description of program
+    std::string m_exec_name;            // name of executable
+protected:
+    std::vector<std::string> separate_opts(const std::vector<std::string>&);
 public:
+    CLI(int argc, char** argv, std::string prog_name, std::string prog_desc);
+    void add_option(std::string short_name, std::string long_name, bool positional=false, bool repeatable=false);
+    
+    void parse();
 };
 
 #endif

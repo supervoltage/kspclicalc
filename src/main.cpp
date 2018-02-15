@@ -10,7 +10,7 @@
 #include "calc/ISP.hpp"
 #include "calc/TrueDV.hpp"
 #include "calc/FuelMass.hpp"
-#include "cli/Option.hpp"
+#include "cli/CLI.hpp"
 
 #include <stdexcept>
 
@@ -51,6 +51,14 @@ int main(int argc, char** argv)
     
     delete cal;
     
+    CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
+    
+    cli.add_option("f", "functionette", true, true);
+    cli.add_option("h", "help", false, false);
+    cli.add_option("a", "about", false, false);
+    cli.parse();
+    
+    /*
     std::vector<std::string> input;
     for(int i = 0; i < argc; ++i)
         input.push_back(argv[i]);
@@ -70,14 +78,6 @@ int main(int argc, char** argv)
     opt = new Option("a", "about", false, false);
     opt_db.push_back(*opt);
     delete opt;
-    
-    for (const auto& it : opt_db)
-    {
-        std::cout << it.get_short_name() << " " << it.get_long_name() << "\n";
-        it.is_positional() ? std::cout << "is positional\n" : std::cout << "is not positional\n";
-    }
-    
-    std::cout << "\n";
     
     std::map<std::string, std::string> results;
 
@@ -111,6 +111,7 @@ int main(int argc, char** argv)
     {
         std::cout << it.first << " " << it.second << "\n";
     }
+    */
     
     return 0;
 }
