@@ -39,8 +39,6 @@
  * That makes me feel better about using the functionette idea.
 */
 
-#include <map>
-
 int main(int argc, char** argv)
 {    
     // test pointer usage
@@ -56,7 +54,15 @@ int main(int argc, char** argv)
     cli.add_option("f", "functionette", true, true);
     cli.add_option("h", "help", false, false);
     cli.add_option("a", "about", false, false);
+    cli.add_option("v", "verbose", false, true);
     cli.parse();
+    
+    std::cout << cli.get_results().size() << "\n";
+    
+    for (const auto& it : cli.get_results())
+    {
+        std::cout << it.first << " " << it.second << "\n";
+    }
     
     /*
     std::vector<std::string> input;

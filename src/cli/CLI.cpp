@@ -1,6 +1,7 @@
 #include "CLI.hpp"
 #include <stdexcept>
 #include <utility>
+#include <algorithm>
 
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
@@ -56,8 +57,9 @@ void CLI::add_option(std::string short_name, std::string long_name, bool positio
     m_opt_db.push_back(opt);
 }
 
-void CLI::parse()
+int CLI::parse()
 {
+    int parse_count(0);
     for (std::vector<std::string>::size_type i = 0; i < m_user_input.size(); ++i)
     {
         bool match = false;
@@ -66,7 +68,8 @@ void CLI::parse()
             if (m_user_input[i] == db_arg.get_short_name() || m_user_input[i] == db_arg.get_long_name())
             {
                 std::pair<std::string, std::string> res;
-                if (db_arg.is_positional())
+                // prepare the result pair depending on whether the option is positional
+                if (db_arg.is_positional() && (i+1) != m_user_input.size())
                 {
                     //m_results[m_user_input[i]] = m_user_input[i+1];
                     res.first = m_user_input[i]; 
@@ -81,12 +84,18 @@ void CLI::parse()
                     res.second= "true";
                     match = true;
                 }
+                
+                // insert it into the results vector depending on whether the option is repeatable
                 if (db_arg.is_repeatable())
+                {
                     m_results.push_back(res);
+                    ++parse_count;
+                }
                 else
                 {
                     for (const auto& it : m_results)
                     {
+                        // if this already exists in the results, skip it; otherwise, add it in
                         if (it.first == db_arg.get_short_name() || it.first == db_arg.get_long_name())
                             break;
                         else
@@ -101,4 +110,19 @@ void CLI::parse()
             //std::cerr << "invalid argument: " << m_user_input[i] << "\n";
             throw std::invalid_argument(m_user_input[i].c_str());
     }
+    return parse_count;
+}
+
+std::vector<std::pair<std::string, std::string> > CLI::get_results() const
+{
+    return m_results;
+}
+
+std::string CLI::operator[] (const std::string& opt) const
+{
+    for (const auto& it : m_results)
+    {
+        if (it.first == opt) return it.second;
+    }
+    return std::string();
 }

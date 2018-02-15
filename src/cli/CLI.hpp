@@ -36,7 +36,12 @@ public:
     CLI(int argc, char** argv, std::string prog_name, std::string prog_desc);
     void add_option(std::string short_name, std::string long_name, bool positional=false, bool repeatable=false);
     
-    void parse();
+    std::vector<std::pair<std::string, std::string> > get_results() const;
+    
+    // operator overload for returning the results of individual options, returns an empty string
+    // on no match
+    std::string operator[] (const std::string&) const;
+    int parse();
 };
 
 #endif

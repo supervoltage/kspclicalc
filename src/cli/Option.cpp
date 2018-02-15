@@ -46,25 +46,7 @@ void Option::store(std::string arg)        { m_result = arg; }
 
 template<>
 bool Option::get_result<bool>() const
-{
-    /* This can cause unwanted behaviour
-    char ch = m_result[0];
-    switch (ch)
-    {
-        case 'y': return true;
-        case 'Y': return true;
-        case 't': return true;
-        case 'T': return true;
-        case '1': return true;
-        
-        case 'n': return false;
-        case 'N': return false;
-        case 'f': return false;
-        case 'F': return false;
-        case '0': return false;
-        default: return false;
-    } */
-    
+{    
     std::string str = m_result;
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     
