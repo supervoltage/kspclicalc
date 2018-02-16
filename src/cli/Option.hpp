@@ -10,15 +10,19 @@
 class Option
 {
 private:
-    std::string m_short_name;   //short option name (aka single hyphen)
-    std::string m_long_name;    //long option name (aka double hyphen)
+    const std::string m_name;         //identifier for option
+    const std::string m_short_name;   //short option name (aka single hyphen)
+    const std::string m_long_name;    //long option name (aka double hyphen)
     std::string m_result;
     const bool m_positional;
     const bool m_repeatable;      //indicates if option can exist several times in input
 public:
-    Option(std::string short_name, std::string long_name, bool positional, bool repeatable);
+    Option(std::string name, std::string short_name, std::string long_name, bool positional, bool repeatable);
+    std::string get_name() const;
     std::string get_short_name() const;
+    std::string get_short_name_bare() const;
     std::string get_long_name() const;
+    std::string get_long_name_bare() const;
     bool is_positional() const;
     bool is_repeatable() const;
     

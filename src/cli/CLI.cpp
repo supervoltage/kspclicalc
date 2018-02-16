@@ -51,9 +51,10 @@ CLI::CLI(int argc, char** argv, std::string prog_name, std::string prog_desc)
     m_user_input = separate_opts(m_user_input);
 }
 
-void CLI::add_option(std::string short_name, std::string long_name, bool positional, bool repeatable)
+void CLI::add_option(std::string name, std::string short_name, std::string long_name,
+                     bool positional, bool repeatable)
 {
-    Option opt(short_name, long_name, positional, repeatable);
+    Option opt(name, short_name, long_name, positional, repeatable);
     m_opt_db.push_back(opt);
 }
 
@@ -62,53 +63,49 @@ int CLI::parse()
     int parse_count(0);
     for (std::vector<std::string>::size_type i = 0; i < m_user_input.size(); ++i)
     {
-        bool match = false;
-        for (const auto& db_arg : m_opt_db)
+        if (m_user_input[i][0] != "-")
+            throw std::invalid_argument(m_user_input[i]);
+        
+        std::pair<std::string, std::string> res;
+        for (const auto& db_opt : m_opt_db)
         {
-            if (m_user_input[i] == db_arg.get_short_name() || m_user_input[i] == db_arg.get_long_name())
+            if(m_user_input[i] != db_opt)
+                continue;
+            if(db_arg.is_positional())
             {
-                std::pair<std::string, std::string> res;
-                // prepare the result pair depending on whether the option is positional
-                if (db_arg.is_positional() && (i+1) != m_user_input.size())
-                {
-                    //m_results[m_user_input[i]] = m_user_input[i+1];
-                    res.first = m_user_input[i]; 
-                    res.second= m_user_input[i+1];
-                    match = true;
-                    ++i;
-                }
-                else
-                {
-                    //m_results[m_user_input[i]] = "true";
-                    res.first = m_user_input[i];
-                    res.second= "true";
-                    match = true;
-                }
-                
-                // insert it into the results vector depending on whether the option is repeatable
-                if (db_arg.is_repeatable())
-                {
-                    m_results.push_back(res);
-                    ++parse_count;
-                }
-                else
-                {
-                    for (const auto& it : m_results)
-                    {
-                        // if this already exists in the results, skip it; otherwise, add it in
-                        if (it.first == db_arg.get_short_name() || it.first == db_arg.get_long_name())
-                            break;
-                        else
-                            m_results.push_back(res);
-                    }
-                }
+                if((i+1) == m_user_input.size() || m_user_input[i+1][0] == "-")
+                    throw std::invalid_argument (m_user_input[i] + " is positional but has no argument");
+                res.first = m_user_input[i];
+                res.second = m_user_input[i+1];
+                ++i;
+            }
+            else
+            {
+                res.first = m_user_input[i];
+                res.second = "true";
+            }
+            
+            if(db_arg.is_repeatable())
+            {
+                m_results.push_back(res);
+                ++parse_count;
                 break;
             }
-            else continue;
+            else
+            {
+                for (const auto& it_res : m_results)
+                {
+                    if (it_res.first != res.first)
+                    {
+                        continue;
+                    }
+                    // more code required here
+                }
+                m_results.push_back(res);
+                ++parse_count;
+                break;
+            }
         }
-        if (match == false)
-            //std::cerr << "invalid argument: " << m_user_input[i] << "\n";
-            throw std::invalid_argument(m_user_input[i].c_str());
     }
     return parse_count;
 }

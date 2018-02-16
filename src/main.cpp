@@ -51,10 +51,10 @@ int main(int argc, char** argv)
     
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
-    cli.add_option("f", "functionette", true, true);
-    cli.add_option("h", "help", false, false);
-    cli.add_option("a", "about", false, false);
-    cli.add_option("v", "verbose", false, true);
+    cli.add_option("functionette", "f", "functionette", true, true);
+    cli.add_option("help", "h", "help", false, false);
+    cli.add_option("about", "a", "about", false, false);
+    cli.add_option("verbose", "v", "verbose", false, true);
     cli.parse();
     
     std::cout << cli.get_results().size() << "\n";

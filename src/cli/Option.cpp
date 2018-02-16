@@ -3,27 +3,15 @@
 #include <string>
 #include <algorithm>
 
-Option::Option(std::string short_name, std::string long_name, bool positional, bool repeatable)
-    : m_positional(positional), m_repeatable(repeatable)
-{
-    if (short_name[0] != '-')
-    {
-        short_name.insert(0,"-");
-        m_short_name = short_name;
-    }
-    else
-        m_short_name = short_name;
-    if (long_name[0] != '-' && long_name[1] != '-')
-    {
-        long_name.insert(0,"--");
-        m_long_name = long_name;
-    }
-    else
-        m_long_name = long_name;
-}
+Option::Option(std::string name, std::string short_name, std::string long_name, bool positional, bool repeatable)
+    : m_name(name), m_short_name(short_name), m_long_name(long_name), m_positional(positional), m_repeatable(repeatable)
+{}
 
-std::string Option::get_short_name() const { return m_short_name; }
-std::string Option::get_long_name() const  { return m_long_name; }
+std::string Option::get_name() const { return m_name; }
+std::string Option::get_short_name() const { return "-" + m_short_name; }
+std::string Option::get_short_name_bare() const { return m_short_name; }
+std::string Option::get_long_name() const  { return "--" + m_long_name; }
+std::string Option::get_long_name_bare() const { return m_long_name; }
 bool Option::is_positional() const { return m_positional; }
 bool Option::is_repeatable() const { return m_repeatable; }
 

@@ -34,7 +34,8 @@ protected:
     std::vector<std::string> separate_opts(const std::vector<std::string>&);
 public:
     CLI(int argc, char** argv, std::string prog_name, std::string prog_desc);
-    void add_option(std::string short_name, std::string long_name, bool positional=false, bool repeatable=false);
+    void add_option(std::string name, std::string short_name, std::string long_name,
+                    bool positional=false, bool repeatable=false);
     
     std::vector<std::pair<std::string, std::string> > get_results() const;
     
