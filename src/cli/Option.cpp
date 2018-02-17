@@ -7,6 +7,11 @@ Option::Option(std::string name, std::string short_name, std::string long_name, 
     : m_name(name), m_short_name(short_name), m_long_name(long_name), m_positional(positional), m_repeatable(repeatable)
 {}
 
+Option::Option(const Option& opt)
+    : m_name(opt.m_name), m_short_name(opt.m_short_name), m_long_name(opt.m_long_name),
+      m_positional(opt.m_positional), m_repeatable(opt.m_repeatable), m_result(opt.m_result)
+{}
+
 std::string Option::get_name() const { return m_name; }
 std::string Option::get_short_name() const { return "-" + m_short_name; }
 std::string Option::get_short_name_bare() const { return m_short_name; }

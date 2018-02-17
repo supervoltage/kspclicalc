@@ -23,9 +23,10 @@ class CLI
 {
 private:
     std::vector<Option> m_opt_db;   // options to look out for, as defined by user
-    std::vector<std::string> m_opt_defaults; // default options/flags, as defined by user
-    std::vector<std::string> m_user_input;  // input, typically argc+argv
+    std::vector<std::string> m_user_input;  // input, typically argc+argv when instantiating object
     std::vector<std::pair<std::string, std::string> > m_results;    // vector to store results in
+    // the vector should be changed to a vector of Option objects to make use of Option's m_result
+    // field and type conversion capabilities.
     
     const std::string m_prog_name;      // name of program
     const std::string m_prog_desc;      // description of program
