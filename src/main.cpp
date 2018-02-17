@@ -41,6 +41,7 @@
 
 int main(int argc, char** argv)
 {    
+    /*
     // test pointer usage
     Calculator* cal = new FuelMass;
     std::vector<std::string> in_arg_list {"2000", "345", "1", "0.5", "3.45", "9"};
@@ -48,7 +49,7 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
-    
+    */
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
     cli.add_option("functionette", "f", "functionette", true, true);
@@ -63,61 +64,6 @@ int main(int argc, char** argv)
     {
         std::cout << it.first << " " << it.second << "\n";
     }
-    
-    /*
-    std::vector<std::string> input;
-    for(int i = 0; i < argc; ++i)
-        input.push_back(argv[i]);
-    
-    input.erase(input.begin());
-    
-    std::vector<Option> opt_db;
-    
-    Option* opt = new Option("f", "functionette", true, true);
-    opt_db.push_back(*opt);
-    delete opt;
-    
-    opt = new Option("h", "help", false, false);
-    opt_db.push_back(*opt);
-    delete opt;
-    
-    opt = new Option("a", "about", false, false);
-    opt_db.push_back(*opt);
-    delete opt;
-    
-    std::map<std::string, std::string> results;
-
-    for (std::vector<std::string>::size_type i = 0; i < input.size(); ++i)
-    {
-        bool match = false;
-        for (const auto& db_arg : opt_db)
-        {
-            if (input[i] == db_arg.get_short_name() || input[i] == db_arg.get_long_name())
-            {
-                if (db_arg.is_positional())
-                {
-                    results[input[i]] = input[i+1];
-                    match = true;
-                    ++i;
-                }
-                else
-                {
-                    results[input[i]] = "true";
-                    match = true;
-                }
-                break;
-            }
-            else continue;
-        }
-        if (match == false)
-            std::cerr << "invalid argument: " << input[i] << "\n";
-    }
-    
-    for (const auto& it : results)
-    {
-        std::cout << it.first << " " << it.second << "\n";
-    }
-    */
     
     return 0;
 }

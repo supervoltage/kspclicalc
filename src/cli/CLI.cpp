@@ -3,6 +3,8 @@
 #include <utility>
 #include <algorithm>
 
+#include <iostream>
+
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
     std::vector<std::string> out;
@@ -68,9 +70,14 @@ int CLI::parse()
         
         std::pair<std::string, std::string> res;
         for (const auto& db_opt : m_opt_db)
-        {
-            if(m_user_input[i] != db_opt.get_short_name() || m_user_input[i] != db_opt.get_long_name())
+        {            
+            // perform check on short name
+            if(m_user_input[i].size() < 3 && m_user_input[i] != db_opt.get_short_name())
                 continue;
+            // perform check on long name
+            if(m_user_input[i].size() > 2 && m_user_input[i] != db_opt.get_long_name())
+                continue;
+                
             if(db_opt.is_positional())
             {
                 if((i+1) == m_user_input.size() || m_user_input[i+1][0] == '-')
