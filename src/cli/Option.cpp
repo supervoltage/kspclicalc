@@ -26,16 +26,19 @@ T Option::get_result() const
     return m_result;
 }
 
-template<>
-std::string Option::get_result<std::string>() const     { return m_result; }
+template <typename T>
+T Option::operator()() const
+{
+    return get_result<T>();
+}
 
 template<>
-int Option::get_result<int>() const             { return atoi(m_result.c_str()); }
-
+std::string Option::get_result<std::string>() const { return m_result; }
 template<>
-double Option::get_result<double>() const          { return atof(m_result.c_str()); }
-
-void Option::store(std::string arg)        { m_result = arg; }
+int Option::get_result<int>() const                 { return atoi(m_result.c_str()); }
+template<>
+double Option::get_result<double>() const           { return atof(m_result.c_str()); }
+void Option::store(std::string arg)                 { m_result = arg; }
 
 template<>
 bool Option::get_result<bool>() const
