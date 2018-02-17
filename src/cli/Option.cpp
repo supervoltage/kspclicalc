@@ -26,12 +26,6 @@ T Option::get_result() const
     return m_result;
 }
 
-template <typename T>
-T Option::operator()() const
-{
-    return get_result<T>();
-}
-
 template<>
 std::string Option::get_result<std::string>() const { return m_result; }
 template<>
@@ -47,6 +41,18 @@ bool Option::get_result<bool>() const
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     
     if (str == "true" || str == "yes" || str == "y" || str == "1")
+        return true;
+    else
+        return false;
+}
+
+bool Option::operator==(const Option& rhs) const
+{
+    if (m_name == rhs.m_name &&
+        m_short_name == rhs.m_short_name &&
+        m_long_name == rhs.m_long_name &&
+        m_positional == rhs.m_positional &&
+        m_repeatable == rhs.m_repeatable)
         return true;
     else
         return false;

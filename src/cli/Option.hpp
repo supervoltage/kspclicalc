@@ -33,6 +33,8 @@ public:
     T get_result() const;
     
     void store(std::string arg);
+    
+    bool operator==(const Option& rhs) const;
 };
 
 #endif

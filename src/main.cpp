@@ -62,15 +62,8 @@ int main(int argc, char** argv)
     
     for (const auto& it : cli.get_results())
     {
-        std::cout << it.first << " " << it.second << "\n";
+        std::cout << it.get_name() << " " << it.get_result<std::string>() << "\n";
     }
-    
-    Option opt("test", "t", "test", true, false);
-    opt.store("positional_argument_here");
-    
-    std::cout << "as string: " << opt.get_result<std::string>() << "\n";
-    std::cout << "as bool:   " << opt.get_result<bool>() << "\n";
-    std::cout << "as int:    " << opt.get_result<int>() << "\n";
-    std::cout << "as double: " << opt.get_result<double>() << "\n";
+
     return 0;
 }

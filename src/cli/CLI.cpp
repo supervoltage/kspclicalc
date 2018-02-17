@@ -68,7 +68,6 @@ int CLI::parse()
         if (m_user_input[i][0] != '-')
             throw std::invalid_argument(m_user_input[i]);
         
-        std::pair<std::string, std::string> res;
         for (const auto& db_opt : m_opt_db)
         {            
             // perform check on short name
@@ -77,24 +76,24 @@ int CLI::parse()
             // perform check on long name
             if(m_user_input[i].size() > 2 && m_user_input[i] != db_opt.get_long_name())
                 continue;
-                
-            if(db_opt.is_positional())
+            
+            Option result {db_opt};
+            
+            if(result.is_positional())
             {
                 if((i+1) == m_user_input.size() || m_user_input[i+1][0] == '-')
                     throw std::invalid_argument (m_user_input[i] + " is positional but has no argument");
-                res.first = m_user_input[i];
-                res.second = m_user_input[i+1];
+                result.store(m_user_input[i+1]);
                 ++i;
             }
             else
             {
-                res.first = m_user_input[i];
-                res.second = "true";
+                result.store("true");
             }
             
-            if(db_opt.is_repeatable())
+            if(result.is_repeatable())
             {
-                m_results.push_back(res);
+                m_results.push_back(result);
                 ++parse_count;
                 break;
             }
@@ -104,7 +103,7 @@ int CLI::parse()
                 bool present = false;
                 for (const auto& it : m_results)
                 {
-                    if (it.first == res.first)
+                    if (it == result)
                         present = true;
                         
                 }
@@ -113,7 +112,7 @@ int CLI::parse()
                     break;
                 else
                 {
-                    m_results.push_back(res);
+                    m_results.push_back(result);
                     ++parse_count;
                     break;
                 }
@@ -123,16 +122,17 @@ int CLI::parse()
     return parse_count;
 }
 
-std::vector<std::pair<std::string, std::string> > CLI::get_results() const
+std::vector<Option> CLI::get_results() const
 {
     return m_results;
 }
 
-std::string CLI::operator[] (const std::string& opt) const
+template <typename T>
+T CLI::operator[] (const std::string& opt) const
 {
     for (const auto& it : m_results)
     {
-        if (it.first == opt) return it.second;
+        if (opt == it.get_name()) return it.get_result<T>();
     }
-    return std::string();
+    return T();
 }

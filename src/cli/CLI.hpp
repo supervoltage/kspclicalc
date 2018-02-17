@@ -24,9 +24,7 @@ class CLI
 private:
     std::vector<Option> m_opt_db;   // options to look out for, as defined by user
     std::vector<std::string> m_user_input;  // input, typically argc+argv when instantiating object
-    std::vector<std::pair<std::string, std::string> > m_results;    // vector to store results in
-    // the vector should be changed to a vector of Option objects to make use of Option's m_result
-    // field and type conversion capabilities.
+    std::vector<Option> m_results;    // vector to store results in
     
     const std::string m_prog_name;      // name of program
     const std::string m_prog_desc;      // description of program
@@ -38,11 +36,12 @@ public:
     void add_option(std::string name, std::string short_name, std::string long_name,
                     bool positional=false, bool repeatable=false);
     
-    std::vector<std::pair<std::string, std::string> > get_results() const;
+    std::vector<Option> get_results() const;
     
-    // operator overload for returning the results of individual options, returns an empty string
-    // on no match
-    std::string operator[] (const std::string&) const;
+    // operator overload for returning the results of individual options
+    template <typename T>
+    T operator[] (const std::string&) const;
+    
     int parse();
 };
 
