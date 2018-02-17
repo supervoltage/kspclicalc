@@ -63,17 +63,17 @@ int CLI::parse()
     int parse_count(0);
     for (std::vector<std::string>::size_type i = 0; i < m_user_input.size(); ++i)
     {
-        if (m_user_input[i][0] != "-")
+        if (m_user_input[i][0] != '-')
             throw std::invalid_argument(m_user_input[i]);
         
         std::pair<std::string, std::string> res;
         for (const auto& db_opt : m_opt_db)
         {
-            if(m_user_input[i] != db_opt)
+            if(m_user_input[i] != db_opt.get_short_name() || m_user_input[i] != db_opt.get_long_name())
                 continue;
-            if(db_arg.is_positional())
+            if(db_opt.is_positional())
             {
-                if((i+1) == m_user_input.size() || m_user_input[i+1][0] == "-")
+                if((i+1) == m_user_input.size() || m_user_input[i+1][0] == '-')
                     throw std::invalid_argument (m_user_input[i] + " is positional but has no argument");
                 res.first = m_user_input[i];
                 res.second = m_user_input[i+1];
@@ -85,7 +85,7 @@ int CLI::parse()
                 res.second = "true";
             }
             
-            if(db_arg.is_repeatable())
+            if(db_opt.is_repeatable())
             {
                 m_results.push_back(res);
                 ++parse_count;
@@ -93,17 +93,23 @@ int CLI::parse()
             }
             else
             {
-                for (const auto& it_res : m_results)
+                // if the argument we have now already exists in the results, don't insert
+                bool present = false;
+                for (const auto& it : m_results)
                 {
-                    if (it_res.first != res.first)
-                    {
-                        continue;
-                    }
-                    // more code required here
+                    if (it.first == res.first)
+                        present = true;
+                        
                 }
-                m_results.push_back(res);
-                ++parse_count;
-                break;
+                
+                if (present)
+                    break;
+                else
+                {
+                    m_results.push_back(res);
+                    ++parse_count;
+                    break;
+                }
             }
         }
     }
