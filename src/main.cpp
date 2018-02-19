@@ -17,6 +17,7 @@
 // TODO: find a way to sensibly derive TimeSplit from Calculator
 // TODO: define the virtual setargs() funtion in ISP
 // TODO: include a m_description string in Option, adjust other code accordingly
+// TODO: Option - modify short and long commands to not include hyphens automatically. Leave it up to the user whether short/long options should have hyphens or not.
 // TODO: implement a way to specify "default options" in CLI
 // TODO: implement automatic help printing which returns a stringstream, not writing directly to an ostream in CLI
 // TODO: add m_parsed_count member variable in CLI
