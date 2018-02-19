@@ -12,8 +12,6 @@
 #include "calc/FuelMass.hpp"
 #include "cli/CLI.hpp"
 
-#include <stdexcept>
-
 // TODO: find a way to sensibly derive TimeSplit from Calculator
 // TODO: define the virtual setargs() funtion in ISP
 // TODO: include a m_description string in Option, adjust other code accordingly
@@ -23,7 +21,7 @@
 // TODO: add m_parsed_count member variable in CLI
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
-// TODO: make a branch for Android development, create an app as well
+// TODO: make a fork for Android development
 
 
 /*I could resort to my previous "functionette" idea in which the end user would write a "function"
@@ -48,6 +46,12 @@
 
 int main(int argc, char** argv)
 {    
+    ISP isp;
+    std::vector<std::string> some_args {};
+    isp.setargs(some_args);
+    isp.calculate();
+    std::cout << isp.getResult() << "\n";
+    
     /*
     // test pointer usage
     Calculator* cal = new FuelMass;
@@ -56,7 +60,7 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
-    */
+    
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
     cli.add_option("functionette", "f", "functionette", true, true);
@@ -71,6 +75,7 @@ int main(int argc, char** argv)
     {
         std::cout << it.get_name() << " " << it.get_result<std::string>() << "\n";
     }
-
+    */
+    
     return 0;
 }

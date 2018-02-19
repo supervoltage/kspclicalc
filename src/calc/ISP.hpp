@@ -24,6 +24,7 @@ public:
     virtual void clearall();
     virtual void clearresult();
     virtual void clearargs();
+    virtual void setargs(const std::vector<std::string>& in_arg_list);
     
     const std::vector<engine>& get_engines();
     

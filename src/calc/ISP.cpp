@@ -56,6 +56,24 @@ void ISP::clearargs()
     engines = std::vector<engine> {};
 }
 
+void ISP::setargs(const std::vector<std::string>& in_arg_list)
+{
+    if(in_arg_list.size() == 0)
+        throw std::length_error("input engine list has no elements");
+    if(in_arg_list.size() % 2 != 0)
+        throw std::length_error("input engine list has odd number of elements");
+    
+    std::vector<engine> out;
+    for (std::vector<std::string>::size_type i = 0; i < in_arg_list.size(); i+=2)
+    {
+        engine eng;
+        eng.first = atof(in_arg_list[i].c_str());
+        eng.second= atof(in_arg_list[i+1].c_str());
+        out.push_back(eng);
+    }
+    set_engines(out);
+}
+
 const std::vector<engine>& ISP::get_engines()
 {
     const std::vector<engine>& out_eng = engines;
