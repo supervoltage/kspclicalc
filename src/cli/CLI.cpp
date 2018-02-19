@@ -70,10 +70,10 @@ int CLI::parse()
         for (const auto& db_opt : m_opt_db)
         {            
             // perform check on short name
-            if(m_user_input[i].size() < 3 && m_user_input[i] != db_opt.get_short_name())
+            if(m_user_input[i][0] == '-' && m_user_input[i][1] != '-' && m_user_input[i] != db_opt.get_short_name())
                 continue;
             // perform check on long name
-            if(m_user_input[i].size() > 2 && m_user_input[i] != db_opt.get_long_name())
+            if(m_user_input[i][0] == '-' && m_user_input[i][1] == '-' && m_user_input[i] != db_opt.get_long_name())
                 continue;
             
             Option result {db_opt};
@@ -100,11 +100,13 @@ int CLI::parse()
             {
                 // if the argument we have now already exists in the results, don't insert
                 bool present = false;
-                for (const auto& it : m_results)
+                for (auto& it : m_results)
                 {
                     if (it == result)
+                    {
+                        it.store(result.get_result<std::string>());
                         present = true;
-                        
+                    }   
                 }
                 
                 if (present)
