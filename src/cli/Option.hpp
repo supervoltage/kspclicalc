@@ -11,6 +11,7 @@ class Option
 {
 private:
     const std::string m_name;         //identifier for option
+    const std::string m_desc;         //description of what this option is for
     const std::string m_short_name;   //short option name (aka single hyphen)
     const std::string m_long_name;    //long option name (aka double hyphen)
     const bool m_positional;
@@ -19,9 +20,11 @@ private:
     std::string m_result;
     
 public:
-    Option(std::string name, std::string short_name, std::string long_name, bool positional, bool repeatable);
+    Option(std::string name, std::string desc, std::string short_name, std::string long_name,
+           bool positional, bool repeatable);
     Option(const Option& opt);
     std::string get_name() const;
+    std::string get_desc() const;
     std::string get_short_name() const;
     std::string get_short_name_bare() const;
     std::string get_long_name() const;

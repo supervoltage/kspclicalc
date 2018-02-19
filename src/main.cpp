@@ -13,8 +13,6 @@
 #include "cli/CLI.hpp"
 
 // TODO: find a way to sensibly derive TimeSplit from Calculator
-// TODO: define the virtual setargs() funtion in ISP
-// TODO: include a m_description string in Option, adjust other code accordingly
 // TODO: Option - modify short and long commands to not include hyphens automatically. Leave it up to the user whether short/long options should have hyphens or not.
 // TODO: implement a way to specify "default options" in CLI
 // TODO: implement automatic help printing which returns a stringstream, not writing directly to an ostream in CLI
@@ -46,12 +44,6 @@
 
 int main(int argc, char** argv)
 {    
-    ISP isp;
-    std::vector<std::string> some_args {};
-    isp.setargs(some_args);
-    isp.calculate();
-    std::cout << isp.getResult() << "\n";
-    
     /*
     // test pointer usage
     Calculator* cal = new FuelMass;
@@ -60,13 +52,13 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
-    
+    */
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
-    cli.add_option("functionette", "f", "functionette", true, true);
-    cli.add_option("help", "h", "help", false, false);
-    cli.add_option("about", "a", "about", false, false);
-    cli.add_option("verbose", "v", "verbose", false, true);
+    cli.add_option("functionette", "generic expression for invoking calculator functions", "f", "functionette", true, true);
+    cli.add_option("help", "print helpful information about program", "h", "help", false, false);
+    cli.add_option("about", "print information about the developer", "a", "about", false, false);
+    cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true);
     cli.parse();
     
     std::cout << cli.get_results().size() << "\n";
@@ -75,7 +67,6 @@ int main(int argc, char** argv)
     {
         std::cout << it.get_name() << " " << it.get_result<std::string>() << "\n";
     }
-    */
     
     return 0;
 }

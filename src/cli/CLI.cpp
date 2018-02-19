@@ -3,8 +3,6 @@
 #include <utility>
 #include <algorithm>
 
-#include <iostream>
-
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
     std::vector<std::string> out;
@@ -53,10 +51,10 @@ CLI::CLI(int argc, char** argv, std::string prog_name, std::string prog_desc)
     m_user_input = separate_opts(m_user_input);
 }
 
-void CLI::add_option(std::string name, std::string short_name, std::string long_name,
+void CLI::add_option(std::string name, std::string desc, std::string short_name, std::string long_name,
                      bool positional, bool repeatable)
 {
-    Option opt(name, short_name, long_name, positional, repeatable);
+    Option opt(name, desc, short_name, long_name, positional, repeatable);
     m_opt_db.push_back(opt);
 }
 
