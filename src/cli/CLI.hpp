@@ -29,6 +29,8 @@ private:
     const std::string m_prog_name;      // name of program
     const std::string m_prog_desc;      // description of program
     std::string m_exec_name;            // name of executable
+    
+    int m_parsed_count;
 protected:
     std::vector<std::string> separate_opts(const std::vector<std::string>&);
 public:
@@ -37,6 +39,7 @@ public:
                     bool positional=false, bool repeatable=false);
     
     std::vector<Option> get_results() const;
+    int get_parsed_count() const;
     
     // operator overload for returning the results of individual options
     template <typename T>

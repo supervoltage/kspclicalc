@@ -16,7 +16,6 @@
 // TODO: Option - modify short and long commands to not include hyphens automatically. Leave it up to the user whether short/long options should have hyphens or not.
 // TODO: implement a way to specify "default options" in CLI
 // TODO: implement automatic help printing which returns a stringstream, not writing directly to an ostream in CLI
-// TODO: add m_parsed_count member variable in CLI
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
 // TODO: make a fork for Android development

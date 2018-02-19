@@ -49,6 +49,8 @@ CLI::CLI(int argc, char** argv, std::string prog_name, std::string prog_desc)
         m_user_input.push_back(argv[i]);
     // separate all arguments
     m_user_input = separate_opts(m_user_input);
+    
+    m_parsed_count = 0;
 }
 
 void CLI::add_option(std::string name, std::string desc, std::string short_name, std::string long_name,
@@ -60,7 +62,6 @@ void CLI::add_option(std::string name, std::string desc, std::string short_name,
 
 int CLI::parse()
 {
-    int parse_count(0);
     for (std::vector<std::string>::size_type i = 0; i < m_user_input.size(); ++i)
     {
         if (m_user_input[i][0] != '-')
@@ -92,7 +93,7 @@ int CLI::parse()
             if(result.is_repeatable())
             {
                 m_results.push_back(result);
-                ++parse_count;
+                ++m_parsed_count;
                 break;
             }
             else
@@ -111,18 +112,23 @@ int CLI::parse()
                 else
                 {
                     m_results.push_back(result);
-                    ++parse_count;
+                    ++m_parsed_count;
                     break;
                 }
             }
         }
     }
-    return parse_count;
+    return get_parsed_count();
 }
 
 std::vector<Option> CLI::get_results() const
 {
     return m_results;
+}
+
+int CLI::get_parsed_count() const
+{
+    return m_parsed_count;
 }
 
 template <typename T>
