@@ -14,6 +14,12 @@
 
 #include <stdexcept>
 
+// TODO: find a way to sensibly derive TimeSplit from Calculator
+// TODO: define the virtual setargs() funtion in ISP
+// TODO: include a m_description string in Option, adjust other code accordingly
+// TODO: implement a way to specify "default options" in CLI
+// TODO: implement automatic help printing which returns a stringstream, not writing directly to an ostream in CLI
+// TODO: add m_parsed_count member variable in CLI
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
 // TODO: make a branch for Android development, create an app as well
