@@ -99,24 +99,18 @@ int CLI::parse()
             else
             {
                 // if the argument we have now already exists in the results, don't insert
-                bool present = false;
                 for (auto& it : m_results)
                 {
                     if (it == result)
                     {
                         it.store(result.get_result<std::string>());
-                        present = true;
+                        break;
                     }   
                 }
                 
-                if (present)
-                    break;
-                else
-                {
-                    m_results.push_back(result);
-                    ++m_parsed_count;
-                    break;
-                }
+                m_results.push_back(result);
+                ++m_parsed_count;
+                break;
             }
         }
     }
