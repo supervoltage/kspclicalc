@@ -38,7 +38,6 @@ public:
     void add_option(std::string name, std::string desc, std::string short_name, std::string long_name,
                     bool positional=false, bool repeatable=false);
     
-    std::vector<Option> get_results() const;
     int get_parsed_count() const;
     
     // operator overload for returning the results of individual options
@@ -46,6 +45,7 @@ public:
     T operator[] (const std::string&) const;
     
     int parse();
+    std::vector<Option> get_results() const;
 };
 
 #endif

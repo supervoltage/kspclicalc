@@ -13,7 +13,7 @@
 #include "cli/CLI.hpp"
 
 // TODO: implement a way to specify "default options" in CLI
-// TODO: implement automatic help printing which returns a stringstream, not writing directly to an ostream in CLI
+// TODO: implement automatic help printing which returns a string, not writing directly to an ostream in CLI
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
 // TODO: make a fork for Android development
@@ -64,13 +64,6 @@ int main(int argc, char** argv)
     {
         std::cout << it.get_name() << " " << it.get_result<std::string>() << "\n";
     }
-    
-    std::cout << "\n\nTesting TimeSplit\n";
-    
-    Calculator* ts = new TimeSplit;
-    std::vector<std::string> arg_list {"17", "59"};
-    ts->setargs(arg_list);
-    std::cout << seconds_to_minsAndSecs(ts->calculate()) << "\n";
     
     return 0;
 }

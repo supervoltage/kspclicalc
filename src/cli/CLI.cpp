@@ -67,16 +67,17 @@ int CLI::parse()
         if (m_user_input[i][0] != '-')
             throw std::invalid_argument(m_user_input[i]);
         
-        for (const auto& db_opt : m_opt_db)
-        {            
+        std::vector<Option>::const_iterator db_opt;
+        for (db_opt = m_opt_db.begin(); db_opt != m_opt_db.end(); ++db_opt)
+        {
             // perform check on short name
-            if(m_user_input[i][0] == '-' && m_user_input[i][1] != '-' && m_user_input[i] != db_opt.get_short_name())
+            if(m_user_input[i][0] == '-' && m_user_input[i][1] != '-' && m_user_input[i] != db_opt->get_short_name())
                 continue;
             // perform check on long name
-            if(m_user_input[i][0] == '-' && m_user_input[i][1] == '-' && m_user_input[i] != db_opt.get_long_name())
+            if(m_user_input[i][0] == '-' && m_user_input[i][1] == '-' && m_user_input[i] != db_opt->get_long_name())
                 continue;
             
-            Option result {db_opt};
+            Option result {*db_opt};
             
             if(result.is_positional())
             {
@@ -113,6 +114,8 @@ int CLI::parse()
                 break;
             }
         }
+        if (db_opt == m_opt_db.end())
+            throw std::invalid_argument(m_user_input[i] + " is not a valid option");
     }
     return get_parsed_count();
 }
