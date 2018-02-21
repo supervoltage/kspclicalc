@@ -4,14 +4,14 @@
 #include <algorithm>
 
 Option::Option(std::string name, std::string desc, std::string short_name, std::string long_name,
-               bool positional, bool repeatable)
+               bool positional, bool repeatable, bool negator)
     : m_name(name), m_desc(desc), m_short_name(short_name), m_long_name(long_name),
-      m_positional(positional), m_repeatable(repeatable)
+      m_positional(positional), m_repeatable(repeatable), m_negator(negator)
 {}
 
 Option::Option(const Option& opt)
     : m_name(opt.m_name), m_desc(opt.m_desc), m_short_name(opt.m_short_name), m_long_name(opt.m_long_name),
-      m_positional(opt.m_positional), m_repeatable(opt.m_repeatable), m_result(opt.m_result)
+      m_positional(opt.m_positional), m_repeatable(opt.m_repeatable), m_negator(opt.m_negator), m_result(opt.m_result)
 {}
 
 std::string Option::get_name() const { return m_name; }
@@ -22,6 +22,7 @@ std::string Option::get_long_name() const  { return "--" + m_long_name; }
 std::string Option::get_long_name_bare() const { return m_long_name; }
 bool Option::is_positional() const { return m_positional; }
 bool Option::is_repeatable() const { return m_repeatable; }
+bool Option::is_negator() const { return m_negator; }
 
 template <typename T>
 T Option::get_result() const

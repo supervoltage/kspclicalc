@@ -16,12 +16,13 @@ private:
     const std::string m_long_name;    //long option name (aka double hyphen)
     const bool m_positional;
     const bool m_repeatable;      //indicates if option can exist several times in input
+    const bool m_negator;         //indicates if option is meant to be negating something
     
     std::string m_result;
     
 public:
     Option(std::string name, std::string desc, std::string short_name, std::string long_name,
-           bool positional, bool repeatable);
+           bool positional, bool repeatable, bool negator);
     Option(const Option& opt);
     std::string get_name() const;
     std::string get_desc() const;
@@ -31,6 +32,7 @@ public:
     std::string get_long_name_bare() const;
     bool is_positional() const;
     bool is_repeatable() const;
+    bool is_negator() const;
     
     template <typename T>
     T get_result() const;

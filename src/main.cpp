@@ -52,10 +52,11 @@ int main(int argc, char** argv)
     */
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
-    cli.add_option("functionette", "generic expression for invoking calculator functions", "f", "functionette", true, true);
-    cli.add_option("help", "print helpful information about program", "h", "help", false, false);
-    cli.add_option("about", "print information about the developer", "a", "about", false, false);
-    cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true);
+    cli.add_option("functionette", "generic expression for invoking calculator functions", "f", "functionette", true, true, false);
+    cli.add_option("help", "print helpful information about program", "h", "help", false, false, false);
+    cli.add_option("about", "print information about the developer", "a", "about", false, false, false);
+    cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true, false);
+    cli.add_option("pink", "test option to test negativity", "p", "pink", false, false, true);
     cli.parse();
     
     std::cout << cli.get_results().size() << "\n";

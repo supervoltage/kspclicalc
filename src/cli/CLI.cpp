@@ -54,9 +54,9 @@ CLI::CLI(int argc, char** argv, std::string prog_name, std::string prog_desc)
 }
 
 void CLI::add_option(std::string name, std::string desc, std::string short_name, std::string long_name,
-                     bool positional, bool repeatable)
+                     bool positional, bool repeatable, bool negator)
 {
-    Option opt(name, desc, short_name, long_name, positional, repeatable);
+    Option opt(name, desc, short_name, long_name, positional, repeatable, negator);
     m_opt_db.push_back(opt);
 }
 
@@ -88,7 +88,10 @@ int CLI::parse()
             }
             else
             {
-                result.store("true");
+                if (result.is_negator())
+                    result.store("false");
+                else
+                    result.store("true");
             }
             
             if(result.is_repeatable())
