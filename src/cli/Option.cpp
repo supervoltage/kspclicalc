@@ -52,11 +52,11 @@ bool Option::get_result<bool>() const
 
 bool Option::operator==(const Option& rhs) const
 {
-    if (m_name == rhs.m_name &&
+    if (m_name == rhs.m_name /* &&
         m_short_name == rhs.m_short_name &&
         m_long_name == rhs.m_long_name &&
         m_positional == rhs.m_positional &&
-        m_repeatable == rhs.m_repeatable)
+        m_repeatable == rhs.m_repeatable */ )
         return true;
     else
         return false;

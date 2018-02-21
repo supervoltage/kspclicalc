@@ -56,7 +56,8 @@ int main(int argc, char** argv)
     cli.add_option("help", "print helpful information about program", "h", "help", false, false, false);
     cli.add_option("about", "print information about the developer", "a", "about", false, false, false);
     cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true, false);
-    cli.add_option("pink", "test option to test negativity", "p", "pink", false, false, true);
+    cli.add_option("pink", "test option to test negativity", "p", "pink", false, false, false);
+    cli.add_option("pink", "test option to test negativity", "n", "no-pink", false, false, true);
     cli.parse();
     
     std::cout << cli.get_results().size() << "\n";

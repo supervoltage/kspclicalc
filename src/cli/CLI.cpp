@@ -3,6 +3,8 @@
 #include <utility>
 #include <algorithm>
 
+#include <iostream>
+
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
     std::vector<std::string> out;
@@ -103,20 +105,26 @@ int CLI::parse()
             else
             {
                 // if the argument we have now already exists in the results, don't insert
+                bool present = false;
                 for (auto& it : m_results)
                 {
                     if (it == result)
                     {
                         it.store(result.get_result<std::string>());
-                        break;
-                    }   
+                        present = true;
+                    }
                 }
-                
-                m_results.push_back(result);
-                ++m_parsed_count;
-                break;
+                if (present)
+                    break;
+                else
+                {
+                    m_results.push_back(result);
+                    ++m_parsed_count;
+                }
             }
         }
+        // executing program with 'kspclicalc -f test' works but if you use any other option
+        // you get the below runtime error... why? Debugging time!
         if (db_opt == m_opt_db.end())
             throw std::invalid_argument(m_user_input[i] + " is not a valid option");
     }
