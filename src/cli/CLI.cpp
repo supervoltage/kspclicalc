@@ -62,6 +62,11 @@ void CLI::add_option(std::string name, std::string desc, std::string short_name,
     m_opt_db.push_back(opt);
 }
 
+void CLI::add_option(const Option& opt)
+{
+    m_opt_db.push_back(opt);
+}
+
 int CLI::parse()
 {
     for (std::vector<std::string>::size_type i = 0; i < m_user_input.size(); ++i)

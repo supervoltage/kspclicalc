@@ -37,6 +37,7 @@ public:
     CLI(int argc, char** argv, std::string prog_name, std::string prog_desc);
     void add_option(std::string name, std::string desc, std::string short_name, std::string long_name,
                     bool positional=false, bool repeatable=false, bool negator=false);
+    void add_option(const Option& opt);
     
     int get_parsed_count() const;
     
