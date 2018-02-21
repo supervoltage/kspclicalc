@@ -120,11 +120,11 @@ int CLI::parse()
                 {
                     m_results.push_back(result);
                     ++m_parsed_count;
+                    break;
                 }
             }
         }
-        // executing program with 'kspclicalc -f test' works but if you use any other option
-        // you get the below runtime error... why? Debugging time!
+        
         if (db_opt == m_opt_db.end())
             throw std::invalid_argument(m_user_input[i] + " is not a valid option");
     }
