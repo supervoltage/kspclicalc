@@ -12,6 +12,7 @@
 #include "calc/FuelMass.hpp"
 #include "cli/CLI.hpp"
 
+// TODO: provide additional functionality to separate_opts for treating options of the format: --long=arg
 // TODO: implement automatic help printing which returns a string, not writing directly to an ostream in CLI
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
