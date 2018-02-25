@@ -7,6 +7,7 @@
 
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
+    // TODO: treat items of the type --long=arg separately or find a way to process these as well
     std::vector<std::string> out;
     for (const auto& it : vec)
     {
