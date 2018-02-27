@@ -5,6 +5,59 @@
 
 #include <iostream>
 
+/*
+vector<string> separate_opts(const vector<string>& vec)
+{
+    vector<string> out;
+    for (const auto& it : vec)
+    {
+        if (it[0] != '-')
+        {
+            out.push_back(it);
+            continue;
+        }
+        else if (it[0] == '-' && it[1] == '-')
+        {
+             string::size_type eq = 0;
+             while (eq != it.size())
+             {
+                   if (it[eq] == '=') break;
+                   ++eq;
+             }
+             if (eq == it.size())
+            {
+                           out.push_back(it);
+                           continue;
+                     }
+                     else
+                     {
+                           // split string into two at the 'eq' point (excluding the point) and make two insertions
+                           out.push_back(it.substr(0,eq-1));
+                           out.push_back(it.substr(eq+1,it.size()));
+                     }
+        }            
+        else
+        {
+            if (it.size() < 3)
+            {
+                out.push_back(it);
+                continue;
+            }
+            else
+            {
+                for (string::size_type i = 1; i < it.size(); ++i)
+                {
+                    string out_it("-");
+                    out_it += it[i];
+                    out.push_back(out_it);
+                }
+            }
+        }
+    }
+    return out;
+}
+*/
+
 std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
 {
     // TODO: treat items of the type --long=arg separately or find a way to process these as well
@@ -16,10 +69,25 @@ std::vector<std::string> CLI::separate_opts(const std::vector<std::string>& vec)
             out.push_back(it);
             continue;
         }
-        else if (it[0] == '-' && it[1] == '-')
-        {
-            out.push_back(it);
-            continue;
+        else if (it[0] == '-' && it[1] == '-')  //FIXME: it[1] is called assuming that the string has more than one character
+        {                                       // should we not be making a comparison on length instead?
+            std::string::size_type eq {0};
+            while (eq != it.size())
+            {
+                if (it[eq] == '=') break;
+                ++eq;
+            }
+            if (eq == it.size())
+            {
+                out.push_back(it);
+                continue;
+            }
+            else
+            {
+                out.push_back(it.substr(0, eq));
+                out.push_back(it.substr(eq+1,it.size()));
+                continue;
+            }
         }             
         else
         {
