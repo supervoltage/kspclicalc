@@ -8,6 +8,29 @@
 // where 'func' is the name of the functionette and 'args' is a comma-delimited list of arguments to
 // the functionette.
 
+/* Functionette will be an abstract base class and the programmer will need to derive other
+ * Functionette-based classes from which one can define how a specific functionette looks like.
+ * 
+ * For instance, one could derive a Functionette to calculate DeltaV called FuncDV. The derived class
+ * could have hard-coded limits for how many arguments there should be and hard-coded argument names.
+ * 
+ * This will simplify the base class quite a bit and then we only need the following variables in a
+ * base class: m_name, m_args
+ * 
+ * 
+*/
+
+// I should also rethink the purpose of Functionette. It will in the first place be used as a means
+// of checking if an input Functionette is valid (for instance, isp(10, 20, 10, 20) ), but should it
+// also be performing any calculations? Or should we return a struct or similar containing the arg
+// list for the caller to deal with and perform the calculation?
+
+// If we rely on inheritance we can include the calculation portion straight into the derived class.
+// Then we can just calculate it. But should we go this further step? It will make it more difficult
+// to add further parts to this program, I'd think.
+
+// Argh, design choices..
+
 #include <string>
 #include <vector>
 #include <utility>
@@ -52,7 +75,7 @@ public:
     void insert_helper_pair(std::string name, std::string desc);
     
     std::string operator[] (std::string searchterm); // obtain argument value from one specific argument name
-    std::map<std::string, std::string> get_args() const;  // get all args; first is name, second is value
+    std::vector<std::string> get_args() const;  // get all args; first is name, second is value
     
     void store(std::string functionette);
 };
