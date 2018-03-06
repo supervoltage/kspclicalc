@@ -1,55 +1,27 @@
 #include "Functionette.hpp"
-#include <algorithm>
+#include <stdexcept>
+#include <cctype>
 
 // constructors and destructors
-Functionette::Functionette(std::string name, int min, int max, std::map<std::string, std::string> helper)
+Functionette::Functionette()
 {}
 
+Functionette::Functionette(std::string name, std::vector<std::string> args)
+    : m_name(name), m_args(args)
+{}
+
+Functionette::Functionette(std::string functionette_string)
+{
+    parse(functionette_string);
+}
+    
 // getters and setters
 std::string Functionette::get_name() const              { return m_name; }
 void Functionette::set_name(std::string new_name)       { m_name = new_name; }
-std::pair<int, int> Functionette::get_bounds() const    { return m_arg_bounds; }
 
-void Functionette::get_bounds(int& min, int& max) const
+std::string Functionette::operator[] (int arg_num) // obtain argument value from one specific argument name
 {
-    min = m_arg_bounds.first;
-    max = m_arg_bounds.second;
-}
-
-void Functionette::set_bounds(std::pair<int, int> new_bounds)
-{
-    m_arg_bounds.first = std::min(new_bounds.first, new_bounds.second);
-    m_arg_bounds.second = std::max(new_bounds.first, new_bounds.second);
-}
-
-void Functionette::set_bounds(int min, int max)
-{
-    set_bounds(std::pair<int, int> {min, max} );
-}
-
-std::map<std::string, std::string> Functionette::get_helper() const
-{
-    return m_arg_helper;
-}
-
-void Functionette::set_helper(std::map<std::string, std::string> new_helper)
-{
-    m_arg_helper = new_helper;
-}
-
-void Functionette::insert_helper_pair(std::pair<std::string, std::string> pair)
-{
-    m_arg_helper[pair.first] = pair.second;
-}
-
-void Functionette::insert_helper_pair(std::string name, std::string desc)
-{
-    insert_helper_pair(std::pair<std::string, std::string> {name, desc} );
-}
-
-std::string Functionette::operator[] (std::string searchterm) // obtain argument value from one specific argument name
-{
-    // ?
+    return m_args[arg_num];
 }
 
 std::vector<std::string> Functionette::get_args() const  // get all args; first is name, second is value
@@ -57,7 +29,30 @@ std::vector<std::string> Functionette::get_args() const  // get all args; first 
     return m_args;
 }
 
-void Functionette::store(std::string functionette)
+void Functionette::parse(std::string functionette)
 {
-    // ?
+    // input: example(arg1, arg2, arg3)
+    
+    const std::string::size_type size = functionette.size();
+    std::string::size_type j = 0;
+    std::string::size_type i = 0;
+    
+    if (isdigit(functionette[0]))
+        throw std::invalid_argument("incorrect functionette name \'" + functionette + "\'; name begins with a digit");
+    
+    while (i < size)
+    {
+        if (functionette[i] == '(')
+        {
+            m_name = functionette.substr(j, i);
+            j = i;
+        }
+        if (functionette[i] == ',')
+        {
+            m_args.push_back(functionette.substr(j+1, i));
+            j = i;
+        }
+        
+        ++i;
+    }
 }

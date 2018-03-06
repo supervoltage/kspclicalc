@@ -11,6 +11,7 @@
 #include "calc/TrueDV.hpp"
 #include "calc/FuelMass.hpp"
 #include "cli/CLI.hpp"
+#include "functionette/Functionette.hpp"
 
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
@@ -46,7 +47,7 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
-    */
+    
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
     cli.add_option("functionette", "generic expression for invoking calculator functions", "f", "functionette", true, true, false);
@@ -54,13 +55,22 @@ int main(int argc, char** argv)
     cli.add_option("about", "print information about the developer", "a", "about", false, false, false);
     cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true, false);
     cli.add_option("long", "test option to test locating = sign", "l", "long", true, false, false);
-    cli.parse();
+    cli.parse);
     
     std::cout << cli.get_results().size() << "\n";
     
     for (const auto& it : cli.get_results())
     {
         std::cout << it.get_name() << " " << it.get_result<std::string>() << "\n";
+    }
+    */
+    
+    Functionette fn ("example(arg1, arg2, arg3)");
+    
+    std::cout << fn.get_name() << "\n";
+    for (const auto& it: fn.get_args() )
+    {
+        std::cout << "\'" << it << "\'\n";
     }
     
     return 0;
