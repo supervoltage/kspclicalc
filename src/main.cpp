@@ -65,8 +65,10 @@ int main(int argc, char** argv)
     }
     */
     
-    Functionette fn ("example(arg1, arg2, arg3)");
+    std::string func = "test(lol, nothertest(notherlol))";
     
+    Functionette fn (func);
+    std::cout << "input: " << func << "\n";
     std::cout << fn.get_name() << "\n";
     for (const auto& it: fn.get_args() )
     {

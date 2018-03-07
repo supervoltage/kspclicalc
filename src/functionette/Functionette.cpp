@@ -34,8 +34,8 @@ std::vector<std::string> Functionette::get_args() const  // get all args; first 
 
 void Functionette::parse(std::string func)
 {
-    // input: example(arg1, arg2, arg3)
-    
+    if (func.size() == 0)
+        throw std::invalid_argument("missing input, expected functionette");
     if (isdigit(func[0]))
         throw std::invalid_argument("incorrect functionette name \'" + func + "\'; name begins with a digit");
     
@@ -54,17 +54,19 @@ void Functionette::parse(std::string func)
         }
     }
     
+    if (m_name.size() == 0)
+        throw std::invalid_argument("failed to extract name of functionette");
+    
     // debug: check what's left after extracting name
     std::cout << func << "\n";
     
     // extract individual arguments and put them in m_args
     std::string::size_type i = 0;
-    while (i < func.size())
+    while (func.size() != 0)
     {
-        ++i;
         if (func[i] == ' ')
         {
-            func.erase(0,i);
+            func.erase(func.begin()+i);
             i = 0;
             continue;
         }
@@ -83,5 +85,6 @@ void Functionette::parse(std::string func)
             continue;
         }
         std::cout << i << ": " << func << "\n";
+        ++i;
     }
 }
