@@ -2,6 +2,9 @@
 #include <stdexcept>
 #include <cctype>
 
+// for debugging, to be removed later
+#include <iostream>
+
 // constructors and destructors
 Functionette::Functionette()
 {}
@@ -29,30 +32,56 @@ std::vector<std::string> Functionette::get_args() const  // get all args; first 
     return m_args;
 }
 
-void Functionette::parse(std::string functionette)
+void Functionette::parse(std::string func)
 {
     // input: example(arg1, arg2, arg3)
     
-    const std::string::size_type size = functionette.size();
-    std::string::size_type j = 0;
-    std::string::size_type i = 0;
+    if (isdigit(func[0]))
+        throw std::invalid_argument("incorrect functionette name \'" + func + "\'; name begins with a digit");
     
-    if (isdigit(functionette[0]))
-        throw std::invalid_argument("incorrect functionette name \'" + functionette + "\'; name begins with a digit");
-    
-    while (i < size)
+    // extract name
+    for (std::string::size_type i = 0; i < func.size(); ++i)
     {
-        if (functionette[i] == '(')
+        if (func[i] == '(')
         {
-            m_name = functionette.substr(j, i);
-            j = i;
+            // perform a sanity check here
+            if (func.back() != ')')
+                throw std::invalid_argument("functionette \'" + func + "\' is not valid");
+            m_name = func.substr(0, i);
+            func.erase(0,i);            // delete name portion
+            func.erase(func.begin());   // delete beginning parantheses
+            func.erase(func.size()-1);  // delete closing parantheses
         }
-        if (functionette[i] == ',')
-        {
-            m_args.push_back(functionette.substr(j+1, i));
-            j = i;
-        }
-        
+    }
+    
+    // debug: check what's left after extracting name
+    std::cout << func << "\n";
+    
+    // extract individual arguments and put them in m_args
+    std::string::size_type i = 0;
+    while (i < func.size())
+    {
         ++i;
+        if (func[i] == ' ')
+        {
+            func.erase(0,i);
+            i = 0;
+            continue;
+        }
+        if (func[i] == ',')
+        {
+            m_args.push_back(func.substr(0, i));
+            func.erase(0,i+1);
+            i = 0;
+            continue;
+        }
+        if (i == func.size())
+        {
+            m_args.push_back(func);
+            func.erase(0, i);
+            i = 0;
+            continue;
+        }
+        std::cout << i << ": " << func << "\n";
     }
 }
