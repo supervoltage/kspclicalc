@@ -65,7 +65,7 @@ int main(int argc, char** argv)
     }
     */
     
-    std::string func = "test(lol, nothertest(notherlol))";
+    std::string func = "dv(10, cpu(500), isp(20, cpu(300)))";
     
     Functionette fn (func);
     std::cout << "input: " << func << "\n";

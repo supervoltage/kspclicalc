@@ -11,6 +11,10 @@
 // This class will take the functionette string and split its contents up correctly for later input
 // management of some sort.
 
+
+
+/* WARNING: this implementation causes cancer, avoid at all costs :WARNING*/
+
 #include <string>
 #include <vector>
 

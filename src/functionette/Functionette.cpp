@@ -2,9 +2,6 @@
 #include <stdexcept>
 #include <cctype>
 
-// for debugging, to be removed later
-#include <iostream>
-
 // constructors and destructors
 Functionette::Functionette()
 {}
@@ -39,6 +36,20 @@ void Functionette::parse(std::string func)
     if (isdigit(func[0]))
         throw std::invalid_argument("incorrect functionette name \'" + func + "\'; name begins with a digit");
     
+    int balancep = 0;
+    // perform sanity check, make sure number of ('s is equal to number of )'s
+    for (std::string::size_type i = 0; i < func.size(); ++i)
+    {
+        if (func[i] == '(')
+            ++balancep;
+        else if (func[i] == ')')
+            --balancep;
+        else
+            continue;
+    }
+    if (balancep != 0)
+        throw std::invalid_argument("invalid functionette \'" + func + "\'; parantheses unbalanced");
+    
     // extract name
     for (std::string::size_type i = 0; i < func.size(); ++i)
     {
@@ -51,6 +62,7 @@ void Functionette::parse(std::string func)
             func.erase(0,i);            // delete name portion
             func.erase(func.begin());   // delete beginning parantheses
             func.erase(func.size()-1);  // delete closing parantheses
+            break;
         }
     }
     
