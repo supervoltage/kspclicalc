@@ -7,38 +7,36 @@
 //      func(args)
 // where 'func' is the name of the functionette and 'args' is a comma-delimited list of arguments to
 // the functionette.
+// Functionettes can be nested inside of each other like below:
+//      func(arg1, func2(arg2), func3(arg3, arg4, arg5) func4(func5(test)))
+// Which will calculate the values of the inner functionettes before moving on to the outer functionettes,
+// essentially unwinding the stack of calls.
 
 // This class will take the functionette string and split its contents up correctly for later input
 // management of some sort.
 
-
-
-/* WARNING: this implementation causes cancer, avoid at all costs :WARNING*/
-
-#include <string>
-#include <vector>
-
 class Functionette
 {
 private:
-    std::string m_name;    
-    std::vector<std::string> m_args;
-    // a vector to store all the arguments obtained via the store() function
-    
+    std::string m_name;                 // name of the functionette
+    std::vector<std::string> m_args;    // store all the arguments of the comma-delimited functionette string
+    std::string m_result;               // place to store the result of the functionette calculation
 public:
-    // constructors and destructors
-    Functionette();
-    Functionette(std::string name, std::vector<std::string> args);
-    Functionette(std::string functionette_string);
+    // constructors
+    Functionette();                             // make empty Functionette
+    Functionette(const Functionette& func);     // copy constructor
+    Functionette(std::string func_str);         // build Functionette directly from functionette string
     
     // getters and setters
-    std::string get_name() const;
-    void set_name(std::string new_name);
+    std::string get_name()              { return m_name;   }
+    std::vector<std::string> get_args() { return m_args;   }
+    std::string get_result()            { return m_result; }
     
-    std::string operator[] (int arg_num); // obtain argument value from one specific argument name
-    std::vector<std::string> get_args() const;  // get all args; first is name, second is value
+    // defined in .cpp file as these do more checks
+    void set_name(std::string name);
+    void set_args(std::vector<std::string> args);
     
-    void parse(std::string functionette);
+    // general methods
+    
+    // TODO: specify general methods of class
 };
-
-#endif
