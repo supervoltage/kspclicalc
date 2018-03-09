@@ -15,28 +15,33 @@
 // This class will take the functionette string and split its contents up correctly for later input
 // management of some sort.
 
+#include <string>
+#include <vector>
+
 class Functionette
 {
 private:
     std::string m_name;                 // name of the functionette
     std::vector<std::string> m_args;    // store all the arguments of the comma-delimited functionette string
-    std::string m_result;               // place to store the result of the functionette calculation
+
+protected:
+    // defined in .cpp file as these do more checks
+    void set_name(std::string name);
+    void set_args(std::vector<std::string> args);
+    void insert_arg(std::string arg);
+
 public:
     // constructors
-    Functionette();                             // make empty Functionette
+    Functionette() {};                          // make empty Functionette
     Functionette(const Functionette& func);     // copy constructor
     Functionette(std::string func_str);         // build Functionette directly from functionette string
     
     // getters and setters
     std::string get_name()              { return m_name;   }
     std::vector<std::string> get_args() { return m_args;   }
-    std::string get_result()            { return m_result; }
-    
-    // defined in .cpp file as these do more checks
-    void set_name(std::string name);
-    void set_args(std::vector<std::string> args);
-    
+
     // general methods
-    
-    // TODO: specify general methods of class
+    void store(std::string func);               // takes a functionette string and sets m_name and m_args
 };
+
+#endif
