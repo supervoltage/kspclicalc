@@ -69,7 +69,8 @@ int main(int argc, char** argv)
     
     Functionette fn (func);
     std::cout << "input: " << func << "\n";
-    std::cout << fn.get_name() << "\n";
+    std::cout << "name: " << fn.get_name() << "\n";
+    std::cout << "args: " << "\n";
     for (const auto& it: fn.get_args() )
     {
         std::cout << "\'" << it << "\'\n";

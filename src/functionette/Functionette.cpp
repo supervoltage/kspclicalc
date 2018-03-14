@@ -45,6 +45,8 @@ void Functionette::insert_arg(std::string arg)
     m_args.push_back(arg);
 }
 
+#include <iostream>
+
 // general methods
 void Functionette::store(std::string func)                // takes a functionette string and sets m_name and m_args
 {
@@ -52,6 +54,54 @@ void Functionette::store(std::string func)                // takes a functionett
     // Examples below:
     /*  cpu(500) -> m_name="cpu"; m_args={"500"};
      *  dv(10, 20, 30) -> m_name="dv"; m_args={"10","20","30"};
-     *  dv(10, 20, cpu(300)) -> m_name="dv"; m_args={"10","20","cpu(300)"} -> m_args{"10","20","x"} (where x is the result of cpu(300) )
+     *  dv(10, 20, cpu(300)) -> m_name="dv"; m_args={"10","20","cpu(300)"} -> m_args{"10","20","30"} (where 30 is the result of cpu(300) )
     */
+    
+    // first we perform some legality checks to ensure the input is of valid format
+    // must have a name at least one char in length and to have the two chars '(' and ')'
+    if (func.size() < 3)
+        throw std::invalid_argument("functionette \'" + func + "\' is invalid; too short");
+    
+    // first character must not be a digit
+    if (isdigit(func[0]))
+        throw std::invalid_argument("functionette \'" + func + "\' is invalid: name begins with a digit");
+    
+    // must have equal numbers of '(' and ')' characters
+    {
+        int openc = 0;    // balance between '(' and ')' characters, should be 0 by end of loop
+        int closec = 0;
+        for (const auto& it : func)
+        {
+            if (it == '(')
+                ++openc;
+            if (it == ')')
+                ++closec;
+        }
+        if (openc != closec)
+            throw std::invalid_argument("functionette \'" + func + "\' is invalid; imbalanced () characters");
+        if (openc == closec && openc == 0)
+            throw std::invalid_argument("functionette \'" + func + "\' is invalid; must have at least one () pair");
+    }
+    
+    // now we can process the input as we're sure it's correct by this point
+    // extract the name (portion from beginning of string until first '(' character)
+    {
+        // find where is the first '(' char
+        int pos = 0;
+        while (func[pos] != '(')
+            ++pos;
+        // extract the portion [0, pos) into m_name
+        m_name = func.substr(0, pos);
+        
+        // remove the name portion from input string
+        func.erase(0, pos);
+        
+        // erase first and last '(' and ')' characters
+        func.erase(func.begin());
+        func.erase(--func.end());
+    }
+    
+    // TODO: extract all the arguments separately
+    
+    
 }
