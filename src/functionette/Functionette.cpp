@@ -103,5 +103,39 @@ void Functionette::store(std::string func)                // takes a functionett
     
     // TODO: extract all the arguments separately
     
+    // isp(20, cpu(300))
     
+    while (func.size() != 0)    // until we run out of input run the below loop
+    {
+        std::string::size_type pos = 0;
+        int pbal = 0;                               // balance between parantheses
+        
+        if (func[pos] == ' ')
+        {
+            func.erase(pos,1);
+            continue;
+        }
+        
+        for (pos = 0; pos < func.size(); ++pos)
+        {                
+            if (func[pos] == '(')                   // check if we're opening an argument list
+                ++pbal;
+            else if (func[pos] == ')')
+                --pbal;
+            
+            if (func[pos] == ',' && (pbal == 0))    // check if it's time to take out the argument
+            {
+                m_args.push_back(func.substr(0,pos));
+                func.erase(0,pos+1);
+                break;
+            }
+            
+            if (pos == func.size()-1)
+            {
+                m_args.push_back(func);
+                func.erase(0,pos+1);
+                break;
+            }
+        }
+    }
 }
