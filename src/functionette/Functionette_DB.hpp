@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "Functionette.hpp"
+
 struct func_info
 {
     std::string name;
@@ -23,6 +25,9 @@ public:
     
     void insert_info(func_info inf);
     void insert_info(std::string new_name, int new_min, int new_max);
+    
+    bool search(std::string name, int argc);
+    bool search(Functionette fn);
 };
 
 #endif

@@ -39,6 +39,7 @@ public:
     // getters and setters
     std::string get_name()              { return m_name;   }
     std::vector<std::string> get_args() { return m_args;   }
+    std::vector<std::string>::size_type get_argc() { return m_args.size(); }
 
     // general methods
     void store(std::string func);               // takes a functionette string and sets m_name and m_args
