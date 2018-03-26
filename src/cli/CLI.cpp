@@ -170,3 +170,5 @@ T CLI::operator[] (const std::string& opt) const
     }
     return T();
 }
+
+template std::string CLI::operator[] (const std::string& opt) const;

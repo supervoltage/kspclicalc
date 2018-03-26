@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     std::cout << cal->calculate() << "\n";
     
     delete cal;
-    
+    */
     CLI cli(argc, argv, "kspclicalc", "quick calculator for several rocketry formulas");
     
     cli.add_option("functionette", "generic expression for invoking calculator functions", "f", "functionette", true, true, false);
@@ -55,8 +55,9 @@ int main(int argc, char** argv)
     cli.add_option("about", "print information about the developer", "a", "about", false, false, false);
     cli.add_option("verbose", "flag indicating verbosity of program", "v", "verbose", false, true, false);
     cli.add_option("long", "test option to test locating = sign", "l", "long", true, false, false);
-    cli.parse);
+    cli.parse();
     
+    /*
     std::cout << cli.get_results().size() << "\n";
     
     for (const auto& it : cli.get_results())
@@ -65,16 +66,17 @@ int main(int argc, char** argv)
     }
     */
     
-    std::string func = "dv(10, cpu(500), isp(20, cpu(300)))";
-    
-    Functionette fn (func);
-    std::cout << "input: " << func << "\n";
-    std::cout << "name: " << fn.get_name() << "\n";
-    std::cout << "args: " << "\n";
-    for (const auto& it: fn.get_args() )
+    for (const auto& it : cli.get_results())
     {
-        std::cout << "\'" << it << "\'\n";
+        Functionette fn (it.get_result<std::string>());
+        std::cout << "input: " << it.get_result<std::string>() << "\n";
+        std::cout << "name: " << fn.get_name() << "\n";
+        std::cout << "args: " << "\n";
+        for (const auto& it: fn.get_args() )
+        {
+            std::cout << "\'" << it << "\'\n";
+        }
     }
-    
+        
     return 0;
 }
