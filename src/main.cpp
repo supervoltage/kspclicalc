@@ -12,6 +12,7 @@
 #include "calc/FuelMass.hpp"
 #include "cli/CLI.hpp"
 #include "functionette/Functionette.hpp"
+#include "functionette/Functionette_DB.hpp"
 
 // TODO: make it easy to use from CLI
 // TODO: merge with master branch
@@ -36,6 +37,8 @@
  * Then again, "sed" is not a fully compliant GNU program as it makes use of string-based commands.
  * That makes me feel better about using the functionette idea.
 */
+
+void functionette_handler(std::vector<Functionette> func_list);
 
 int main(int argc, char** argv)
 {    
@@ -66,17 +69,34 @@ int main(int argc, char** argv)
     }
     */
     
+    std::vector<Functionette> funcs;
     for (const auto& it : cli.get_results())
     {
-        Functionette fn (it.get_result<std::string>());
-        std::cout << "input: " << it.get_result<std::string>() << "\n";
-        std::cout << "name: " << fn.get_name() << "\n";
-        std::cout << "args: " << "\n";
-        for (const auto& it: fn.get_args() )
+        if (it.get_name() == "functionette")
         {
-            std::cout << "\'" << it << "\'\n";
+            funcs.push_back(it.get_result<std::string>());
         }
     }
-        
+    
+    functionette_handler(funcs);
+    
     return 0;
+}
+
+void functionette_handler(std::vector<Functionette> func_list)
+{
+    // build db which we'll use to check input functionettes against
+    Functionette_DB f_db;
+    f_db.insert_info("dv", 3, 3);
+    f_db.insert_info("cpu", 1, 1);
+    f_db.insert_info("isp", 2, 0); // 0 for max value means infinity
+    f_db.insert_info("ts", 1, 2);
+    f_db.insert_info("tdv", 5, 5);
+    f_db.insert_info("twr", 2, 2);
+    f_db.insert_info("fm", 6, 6);
+    
+    for (const auto& it : func_list)
+    {
+        std::cout << it.get_name() << std::endl;
+    }
 }
