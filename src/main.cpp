@@ -97,6 +97,10 @@ void functionette_handler(std::vector<Functionette> func_list)
     
     for (const auto& it : func_list)
     {
-        std::cout << it.get_name() << std::endl;
+        for (const auto& db_it : f_db.get_db())
+        {
+            if (db_it.name == it.get_name())
+                std::cout << it.get_name() << std::endl;
+        }
     }
 }
